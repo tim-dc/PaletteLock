@@ -15,20 +15,4 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tangina mo daw gago"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="140dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="kupal ka"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="268dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
