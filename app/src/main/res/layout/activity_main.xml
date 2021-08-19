@@ -19,8 +19,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tangina mo daw"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="197dp" />
+        android:text="Tangina mo daw gago"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="140dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
