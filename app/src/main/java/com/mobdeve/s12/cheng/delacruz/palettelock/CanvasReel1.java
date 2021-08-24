@@ -12,8 +12,6 @@ import androidx.annotation.Nullable;
 
 public class CanvasReel1 extends View {
 
-    
-    
     private Rect mRectSlot1;
     private Paint mPaintSlot1;
 
