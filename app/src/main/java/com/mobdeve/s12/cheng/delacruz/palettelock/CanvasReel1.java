@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -73,8 +74,12 @@ public class CanvasReel1 extends View {
 
         mPaintSlot1.setColor(Color.rgb(123,150,72));
         mPaintSlot2.setColor(Color.rgb(100,50,92));
+        mPaintSlot3.setColor(Color.rgb(3,88,150));
+        mPaintSlot4.setColor(Color.rgb(43,150,32));
+        mPaintSlot5.setColor(Color.rgb(34,0,100));
 
     }
+
 
     public void swapColor(int reelNum, int red, int green, int blue, boolean status) {
 
@@ -112,6 +117,7 @@ public class CanvasReel1 extends View {
     {
         if(isLocked(reelNum))
         {
+
         }else {
             setLockStatus(reelNum);
         }
@@ -121,14 +127,13 @@ public class CanvasReel1 extends View {
     public void setLockStatus(int reelNum){
         switch(reelNum)
         {
-            case 1: lockStatus1 = true;
-            case 2: lockStatus2 = true;
-            case 3: lockStatus3 = true;
-            case 4: lockStatus4 = true;
-            case 5: lockStatus5 = true;
+            case 1: lockStatus1 = true; break;
+            case 2: lockStatus2 = true; break;
+            case 3: lockStatus3 = true; break;
+            case 4: lockStatus4 = true; break;
+            case 5: lockStatus5 = true; break;
         }
     }
-
 
     public boolean isLocked(int reelNum)
     {
@@ -161,16 +166,18 @@ public class CanvasReel1 extends View {
         width = canvas.getWidth();
         height = canvas.getHeight();
 
-        int topOffset = 50;
+        int topOffset = 300;
         int leftOffset = 50;
+        int botOffset = 200;
         int subtractWidth =  leftOffset*2;
         int subtractHeight = topOffset*2;
+
 
         // First Rectangle
         mRectSlot1.left = leftOffset;
         mRectSlot1.top = topOffset;
         mRectSlot1.right = mRectSlot1.left + 350;
-        mRectSlot1.bottom = mRectSlot1.top + height-subtractHeight;
+        mRectSlot1.bottom = mRectSlot1.top + height-subtractHeight + botOffset;
 
         canvas.drawRect(mRectSlot1, mPaintSlot1);
 
@@ -178,10 +185,34 @@ public class CanvasReel1 extends View {
         mRectSlot2.left = mRectSlot1.right + leftOffset;
         mRectSlot2.top = topOffset;
         mRectSlot2.right = mRectSlot2.left + 350;
-        mRectSlot2.bottom = mRectSlot2.top + height-subtractHeight;
-
+        mRectSlot2.bottom = mRectSlot2.top + height-subtractHeight + botOffset;
 
         canvas.drawRect(mRectSlot2, mPaintSlot2);
+
+        // Third Rectangle
+        mRectSlot3.left = mRectSlot2.right + leftOffset;
+        mRectSlot3.top = topOffset;
+        mRectSlot3.right = mRectSlot3.left + 350;
+        mRectSlot3.bottom = mRectSlot3.top + height-subtractHeight + botOffset;
+
+        canvas.drawRect(mRectSlot3, mPaintSlot3);
+
+        // Fourth Rectangle
+        mRectSlot4.left = mRectSlot3.right + leftOffset;
+        mRectSlot4.top = topOffset;
+        mRectSlot4.right = mRectSlot4.left + 350;
+        mRectSlot4.bottom = mRectSlot4.top + height-subtractHeight + botOffset;
+
+        canvas.drawRect(mRectSlot4, mPaintSlot4);
+
+        // Fifth Rectangle
+        mRectSlot5.left = mRectSlot4.right + leftOffset;
+        mRectSlot5.top = topOffset;
+        mRectSlot5.right = mRectSlot5.left + 350;
+        mRectSlot5.bottom = mRectSlot5.top + height-subtractHeight + botOffset;
+
+        canvas.drawRect(mRectSlot5, mPaintSlot5);
+
 
 
     }
