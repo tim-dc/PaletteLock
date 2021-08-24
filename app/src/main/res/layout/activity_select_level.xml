@@ -4,13 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#faf8ef"
+    android:orientation="vertical"
     tools:context=".SelectLevel">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="baho pwet"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="307dp" />
+    <ImageView
+        android:id="@+id/select_level"
+        android:layout_width="487dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/select_level" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
