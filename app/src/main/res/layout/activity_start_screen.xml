@@ -10,11 +10,11 @@
 
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie"
-        android:layout_width="161dp"
-        android:layout_height="126dp"
+        android:id="@+id/lottie_play"
+        android:layout_width="145dp"
+        android:layout_height="92dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="96dp"
         android:scaleX="2"
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="@+id/title_one"
@@ -25,14 +25,15 @@
 
     <ImageView
         android:id="@+id/title_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_width="468dp"
+        android:layout_height="416dp"
+        android:layout_marginBottom="16dp"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/title_three" />
+        app:srcCompat="@drawable/title_eight" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

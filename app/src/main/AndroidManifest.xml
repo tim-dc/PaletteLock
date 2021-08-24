@@ -10,7 +10,8 @@
         android:screenOrientation="sensorPortrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.PaletteLock">
-        <activity android:name=".StartScreen"></activity>
+        <activity android:name=".SelectLevel"></activity>
+        <activity android:name=".StartScreen" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
