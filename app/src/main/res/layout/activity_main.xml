@@ -6,13 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.mobdeve.s12.cheng.delacruz.palettelock.CanvasReel1
+        android:id="@+id/reel1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp" />
+
+    <Button
+        android:id="@+id/btn_swap_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="296dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="49dp"
+        android:text="Swap Color"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reel1" />
+
+    <Button
+        android:id="@+id/btn_lock_reel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="136dp"
+        android:text="Lock Reel 1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_swap_color" />
+
+    <Button
+        android:id="@+id/btn_lock_reel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_lock_reel1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="136dp"
+        android:text="Lock Reel 2"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_reel1"
+        app:layout_constraintTop_toBottomOf="@+id/btn_swap_color" />
+
+    <Button
+        android:id="@+id/btn_lock_reel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_lock_reel1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="136dp"
+        android:text="Lock Reel 2"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_reel2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_swap_color" />
+
+    <Button
+        android:id="@+id/btn_lock_reel4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_lock_reel1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="136dp"
+        android:text="Lock Reel 2"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_reel3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_swap_color" />
+
+    <Button
+        android:id="@+id/btn_lock_reel5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_lock_reel1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="136dp"
+        android:text="Lock Reel 2"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_reel4"
+        app:layout_constraintTop_toBottomOf="@+id/btn_swap_color" />
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/reel1"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_reel5"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
