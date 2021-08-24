@@ -13,7 +13,7 @@
         <activity android:name=".SelectLevel"></activity>
         <activity android:name=".StartScreen" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
