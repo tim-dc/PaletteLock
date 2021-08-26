@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PaletteLock">
         <activity android:name=".SelectLevel"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".StartScreen" />
         <activity
             android:name=".SplashScreen"
