@@ -59,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 2000,
                 2000);
 
-        counter = (TextView)findViewById(R.id.counter);
-        mCanvasReel1 = (CanvasReel1) findViewById(R.id.reel1);
-        mCanvasReel2 = (CanvasReel2) findViewById(R.id.reel2);
-        mCanvasReel3 = (CanvasReel3) findViewById(R.id.reel3);
-        mCanvasReel4 = (CanvasReel4) findViewById(R.id.reel4);
-        mCanvasReel5 = (CanvasReel5) findViewById(R.id.reel5);
+        counter = findViewById(R.id.counter);
+        mCanvasReel1 = findViewById(R.id.reel1);
+        mCanvasReel2 = findViewById(R.id.reel2);
+        mCanvasReel3 = findViewById(R.id.reel3);
+        mCanvasReel4 = findViewById(R.id.reel4);
+        mCanvasReel5 = findViewById(R.id.reel5);
 
         findViewById(R.id.reel1).setOnClickListener(new View.OnClickListener(){
             @Override
