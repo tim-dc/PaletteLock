@@ -49,6 +49,13 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
             }
         });
 
+        findViewById(R.id.btn_highscore).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showHighScore();
+            }
+        });
+
         levelRecycler = findViewById(R.id.my_recycler);
         levelRecycler();
     }
@@ -77,6 +84,27 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 dialog.dismiss();
             }
         });
+
+        dialog.show();
+    }
+
+    private void showHighScore(){
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.highscore_popup);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+
+        ImageView btnClose = dialog.findViewById(R.id.btn_close);
+
+        dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
 
         dialog.show();
     }
