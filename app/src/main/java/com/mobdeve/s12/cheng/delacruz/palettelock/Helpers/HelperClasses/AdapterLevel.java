@@ -13,7 +13,7 @@ import com.mobdeve.s12.cheng.delacruz.palettelock.R;
 
 import java.util.ArrayList;
 
-public class AdapterLevel extends RecyclerView.Adapter<AdapterLevel.PhoneViewHold>  {
+public class AdapterLevel extends RecyclerView.Adapter<AdapterLevel.LevelViewHolder>  {
 
     ArrayList<Helper> location;
     final private ListItemClickListener mOnClickListener;
@@ -26,14 +26,14 @@ public class AdapterLevel extends RecyclerView.Adapter<AdapterLevel.PhoneViewHol
     @NonNull
 
     @Override
-    public PhoneViewHold onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LevelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_card_view, parent, false);
-        return new PhoneViewHold(view);
+        return new LevelViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhoneViewHold holder, int position) {
+    public void onBindViewHolder(@NonNull LevelViewHolder holder, int position) {
 
 
         Helper helper = location.get(position);
@@ -50,13 +50,13 @@ public class AdapterLevel extends RecyclerView.Adapter<AdapterLevel.PhoneViewHol
         void onListClick(int clickedItemIndex);
     }
 
-    public class PhoneViewHold extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class LevelViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView level;
         RelativeLayout relativeLayout;
 
 
-        public PhoneViewHold(@NonNull View itemView) {
+        public LevelViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             //hooks
