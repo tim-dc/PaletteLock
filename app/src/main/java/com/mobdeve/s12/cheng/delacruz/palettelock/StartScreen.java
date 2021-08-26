@@ -33,7 +33,7 @@ public class StartScreen extends AppCompatActivity {
         lottiePlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (StartScreen.this, MainActivity.class);
+                Intent intent = new Intent (StartScreen.this, SelectLevel.class);
                 startActivity(intent);
             }
         });
