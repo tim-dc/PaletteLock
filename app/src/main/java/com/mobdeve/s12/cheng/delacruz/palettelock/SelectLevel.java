@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterLevel;
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.Helper;
@@ -39,8 +42,43 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
             }
         });
 
+        findViewById(R.id.infoButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showInstructions();
+            }
+        });
+
         levelRecycler = findViewById(R.id.my_recycler);
         levelRecycler();
+    }
+
+    private void showInstructions(){
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.info_popup);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+
+        ImageView btnClose = dialog.findViewById(R.id.btn_close);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+
+        dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private void levelRecycler() {

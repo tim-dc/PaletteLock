@@ -53,7 +53,6 @@ public class AdapterLevel extends RecyclerView.Adapter<AdapterLevel.PhoneViewHol
     public class PhoneViewHold extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView level;
-        TextView title;
         RelativeLayout relativeLayout;
 
 
