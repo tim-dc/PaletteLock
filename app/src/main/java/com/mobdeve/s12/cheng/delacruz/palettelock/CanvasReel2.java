@@ -12,60 +12,47 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-public class CanvasReel1 extends View {
+public class CanvasReel2 extends View {
 
-    private Rect mRectSlot1;
     private Rect mRectSlot2;
-    private Rect mRectSlot3;
-    private Rect mRectSlot4;
-    private Rect mRectSlot5;
 
-    private Paint mPaintSlot1;
     private Paint mPaintSlot2;
-    private Paint mPaintSlot3;
-    private Paint mPaintSlot4;
-    private Paint mPaintSlot5;
 
-    private boolean lockStatus1 = false;
     private boolean lockStatus2 = false;
-    private boolean lockStatus3 = false;
-    private boolean lockStatus4 = false;
-    private boolean lockStatus5 = false;
 
     private static int width;
     private static int height;
 
-    public CanvasReel1(Context context) {
+    public CanvasReel2(Context context) {
         super(context);
 
         init(null);
     }
 
-    public CanvasReel1(Context context, @Nullable AttributeSet attrs) {
+    public CanvasReel2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         init(attrs);
     }
 
-    public CanvasReel1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CanvasReel2(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         init(attrs);
     }
 
-    public CanvasReel1(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CanvasReel2(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
         init(attrs);
     }
 
     private void init(@Nullable AttributeSet set) {
-        mRectSlot1 = new Rect();
+        mRectSlot2 = new Rect();
 
-        mPaintSlot1 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintSlot2 = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-        mPaintSlot1.setColor(Color.rgb(123,150,72));
-
+        mPaintSlot2.setColor(Color.rgb(100,50,92));
     }
 
 
@@ -74,7 +61,7 @@ public class CanvasReel1 extends View {
         if(status){
 
         }else{
-            mPaintSlot1.setColor(Color.rgb(red,green,blue));
+            mPaintSlot2.setColor(Color.rgb(red,green,blue));
         }
 
         postInvalidate();
@@ -93,16 +80,16 @@ public class CanvasReel1 extends View {
 
     public void setLockStatus(){
 
-        lockStatus1 = true;
+        lockStatus2 = true;
     }
 
     public boolean isLocked()
     {
-        return lockStatus1;
+        return lockStatus2;
     }
 
     public void resetLock(){
-        lockStatus1 = false;
+        lockStatus2 = false;
         // if already complete, don't unlock
     }
 
@@ -121,12 +108,12 @@ public class CanvasReel1 extends View {
 
 
         // First Rectangle
-        mRectSlot1.left = leftOffset;
-        mRectSlot1.top = topOffset;
-        mRectSlot1.right = mRectSlot1.left + 350;
-        mRectSlot1.bottom = mRectSlot1.top + height-subtractHeight + botOffset;
+        mRectSlot2.left = leftOffset;
+        mRectSlot2.top = topOffset;
+        mRectSlot2.right = mRectSlot2.left + 350;
+        mRectSlot2.bottom = mRectSlot2.top + height-subtractHeight + botOffset;
 
-        canvas.drawRect(mRectSlot1, mPaintSlot1);
+        canvas.drawRect(mRectSlot2, mPaintSlot2);
 
 
 
