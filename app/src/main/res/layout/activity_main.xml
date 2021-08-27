@@ -32,6 +32,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline5" />
 
+
     <com.mobdeve.s12.cheng.delacruz.palettelock.CanvasReel4
         android:id="@+id/reel4"
         android:layout_width="100dp"
@@ -39,7 +40,6 @@
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/reel5"
         app:layout_constraintStart_toEndOf="@+id/reel3" />
-
 
     <com.mobdeve.s12.cheng.delacruz.palettelock.CanvasReel5
         android:id="@+id/reel5"
@@ -87,6 +87,63 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/lock1"
+        android:layout_width="113dp"
+        android:layout_height="112dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
+        app:layout_constraintEnd_toEndOf="@+id/reel1"
+        app:layout_constraintStart_toStartOf="@+id/reel1"
+        app:layout_constraintTop_toTopOf="@+id/reel1"
+        app:srcCompat="@drawable/lock_final"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/lock2"
+        android:layout_width="117dp"
+        android:layout_height="114dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/reel2"
+        app:layout_constraintEnd_toEndOf="@+id/reel2"
+        app:layout_constraintStart_toStartOf="@+id/reel2"
+        app:layout_constraintTop_toTopOf="@+id/reel2"
+        app:srcCompat="@drawable/lock_final" />
+
+    <ImageView
+        android:id="@+id/lock3"
+        android:layout_width="117dp"
+        android:layout_height="114dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/reel3"
+        app:layout_constraintEnd_toEndOf="@+id/reel3"
+        app:layout_constraintStart_toStartOf="@+id/reel3"
+        app:layout_constraintTop_toTopOf="@+id/reel3"
+        app:srcCompat="@drawable/lock_final" />
+
+    <ImageView
+        android:id="@+id/lock4"
+        android:layout_width="117dp"
+        android:layout_height="114dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
+        app:layout_constraintEnd_toEndOf="@+id/reel4"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="@+id/reel4"
+        app:layout_constraintTop_toTopOf="@+id/reel4"
+        app:srcCompat="@drawable/lock_final" />
+
+    <ImageView
+        android:id="@+id/lock5"
+        android:layout_width="117dp"
+        android:layout_height="114dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/reel5"
+        app:layout_constraintEnd_toEndOf="@+id/reel5"
+        app:layout_constraintStart_toStartOf="@+id/reel5"
+        app:layout_constraintTop_toTopOf="@+id/reel5"
+        app:srcCompat="@drawable/lock_final" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
