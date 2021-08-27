@@ -17,7 +17,7 @@ public class CanvasReel5 extends View {
     private Rect mRectSlot5;
 
     private Paint mPaintSlot5;
-
+    private Paint mPaintCircle5;
     private boolean lockStatus5 = false;
 
     private static int width;
@@ -53,6 +53,11 @@ public class CanvasReel5 extends View {
         mPaintSlot5 = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mPaintSlot5.setColor(Color.rgb(34,0,100));
+
+        mPaintCircle5 = new Paint();
+        mPaintCircle5.setAntiAlias(true);
+        mPaintCircle5.setColor(Color.parseColor("#e76f51"));
+
 
     }
 
@@ -103,7 +108,7 @@ public class CanvasReel5 extends View {
         width = canvas.getWidth();
         height = canvas.getHeight();
 
-        int topOffset = 300;
+        int topOffset = 100;
         int leftOffset = 50;
         int botOffset = 200;
         int subtractWidth =  leftOffset*2;
@@ -112,11 +117,19 @@ public class CanvasReel5 extends View {
 
         // Fifth Rectangle
         mRectSlot5.left = 0;
-        mRectSlot5.top = 0;
+        mRectSlot5.top = topOffset;
         mRectSlot5.right = width;
         mRectSlot5.bottom = height;
 
         canvas.drawRect(mRectSlot5, mPaintSlot5);
+
+        float cx, cy;
+        float radius = 40f;
+
+        cx = getWidth() /2;
+        cy = topOffset - mRectSlot5.top/2;
+
+        canvas.drawCircle(cx,cy,radius,mPaintCircle5);
 
 
     }
