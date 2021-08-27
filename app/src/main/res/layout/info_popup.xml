@@ -44,6 +44,17 @@
                 android:textColor="#5C3D2E"
                 android:textSize="20sp" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/click"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/click"
+                app:lottie_repeatCount="3"/>
+
             <TextView
                 android:id="@+id/txtDesc"
                 android:layout_width="wrap_content"
@@ -51,10 +62,11 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/indie_flower"
                 android:gravity="center_horizontal"
-                android:text="What a crazy world we live in because ha hatdog hi im lyn from las vegas mowdels, we're hiring new prumusyunal models. romeo juliet youll never have to be alone happy birthday to you i love pepper."
+                android:text="As the  palette changes color per beat, the player needs to tap on one of the color reels when it matches with the Goal Color Palette. The goal is to match the color palette of the current screen to the goal placed at the top of each color changing reel."
                 android:textColor="#5C3D2E"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,12 +80,14 @@
                     android:id="@+id/btn_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Okay!"
+                    android:backgroundTint="#5C3D2E"
                     android:fontFamily="@font/indie_flower"
-                    android:textColor="@color/white"
-                    android:backgroundTint="#5C3D2E"/>
+                    android:text="Okay!"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
+
+
 
         </LinearLayout>
     </RelativeLayout>
