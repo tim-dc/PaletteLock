@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -121,7 +122,10 @@ public class CanvasReel5 extends View {
         mRectSlot5.right = width;
         mRectSlot5.bottom = height;
 
-        canvas.drawRect(mRectSlot5, mPaintSlot5);
+//        canvas.drawRect(mRectSlot5, mPaintSlot5);
+
+        RectF rectF = new RectF (0,topOffset,width,height);
+        canvas.drawRoundRect(rectF,35,35,mPaintSlot5);
 
         float cx, cy;
         float radius = 40f;
