@@ -145,5 +145,16 @@
         app:layout_constraintTop_toTopOf="@+id/reel5"
         app:srcCompat="@drawable/lock_final" />
 
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/backbtn"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
