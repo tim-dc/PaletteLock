@@ -111,10 +111,10 @@ public class CanvasReel5 extends View {
 
 
         // Fifth Rectangle
-        mRectSlot5.left = leftOffset;
-        mRectSlot5.top = topOffset;
-        mRectSlot5.right = mRectSlot5.left + 350;
-        mRectSlot5.bottom = mRectSlot5.top + height-subtractHeight + botOffset;
+        mRectSlot5.left = 0;
+        mRectSlot5.top = 0;
+        mRectSlot5.right = width;
+        mRectSlot5.bottom = height;
 
         canvas.drawRect(mRectSlot5, mPaintSlot5);
 

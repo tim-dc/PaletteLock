@@ -112,10 +112,10 @@ public class CanvasReel3 extends View {
         int one, two;
 
         // Third Rectangle
-        mRectSlot3.left = leftOffset;
-        mRectSlot3.top = topOffset;
-        mRectSlot3.right = mRectSlot3.left + 350;
-        mRectSlot3.bottom = mRectSlot3.top + height-subtractHeight + botOffset;
+        mRectSlot3.left = 0;
+        mRectSlot3.top = 0;
+        mRectSlot3.right = width;
+        mRectSlot3.bottom = height;
 
         canvas.drawRect(mRectSlot3, mPaintSlot3);
 

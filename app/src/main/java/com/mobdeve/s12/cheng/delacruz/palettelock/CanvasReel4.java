@@ -109,10 +109,10 @@ public class CanvasReel4 extends View {
 
 
         // Fourth Rectangle
-        mRectSlot4.left = leftOffset;
-        mRectSlot4.top = topOffset;
-        mRectSlot4.right = mRectSlot4.left + 350;
-        mRectSlot4.bottom = mRectSlot4.top + height-subtractHeight + botOffset;
+        mRectSlot4.left = 0;
+        mRectSlot4.top = 0;
+        mRectSlot4.right = width;
+        mRectSlot4.bottom = height;
 
         canvas.drawRect(mRectSlot4, mPaintSlot4);
 

@@ -15,22 +15,8 @@ import androidx.annotation.Nullable;
 public class CanvasReel1 extends View {
 
     private Rect mRectSlot1;
-    private Rect mRectSlot2;
-    private Rect mRectSlot3;
-    private Rect mRectSlot4;
-    private Rect mRectSlot5;
-
     private Paint mPaintSlot1;
-    private Paint mPaintSlot2;
-    private Paint mPaintSlot3;
-    private Paint mPaintSlot4;
-    private Paint mPaintSlot5;
-
     private boolean lockStatus1 = false;
-    private boolean lockStatus2 = false;
-    private boolean lockStatus3 = false;
-    private boolean lockStatus4 = false;
-    private boolean lockStatus5 = false;
 
     private static int width;
     private static int height;

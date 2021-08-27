@@ -108,10 +108,10 @@ public class CanvasReel2 extends View {
 
 
         // First Rectangle
-        mRectSlot2.left = leftOffset;
-        mRectSlot2.top = topOffset;
-        mRectSlot2.right = mRectSlot2.left + 350;
-        mRectSlot2.bottom = mRectSlot2.top + height-subtractHeight + botOffset;
+        mRectSlot2.left = 0;
+        mRectSlot2.top = 0;
+        mRectSlot2.right = width;
+        mRectSlot2.bottom = height;
 
         canvas.drawRect(mRectSlot2, mPaintSlot2);
 
