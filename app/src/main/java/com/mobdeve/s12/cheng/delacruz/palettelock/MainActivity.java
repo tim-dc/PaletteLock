@@ -2,10 +2,14 @@ package com.mobdeve.s12.cheng.delacruz.palettelock;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -66,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
         mCanvasReel4 = findViewById(R.id.reel4);
         mCanvasReel5 = findViewById(R.id.reel5);
 
+        findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showConfirmExit();
+            }
+        });
+
         findViewById(R.id.reel1).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -100,6 +111,39 @@ public class MainActivity extends AppCompatActivity {
                 mCanvasReel5.lockColor(5);
             }
         });
+
+    }
+
+    private void showConfirmExit(){
+
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.exit_popup);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+
+        Button btnClose = dialog.findViewById(R.id.btn_cancel);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+
+        dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent;
+                mIntent = new Intent(MainActivity.this, SelectLevel.class);
+                startActivity(mIntent);
+                finish();
+            }
+        });
+
+        dialog.show();
 
     }
 
