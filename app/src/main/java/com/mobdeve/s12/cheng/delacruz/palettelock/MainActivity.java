@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -41,14 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int currentCount=0;
 
-
-    ImageView reelLock1;
-    ImageView reelLock2;
-    ImageView reelLock3;
-    ImageView reelLock4;
-    ImageView reelLock5;
-
-
     TextView counter;
 
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
@@ -75,17 +66,10 @@ public class MainActivity extends AppCompatActivity {
         mCanvasReel4 = findViewById(R.id.reel4);
         mCanvasReel5 = findViewById(R.id.reel5);
 
-        reelLock1 = (ImageView)findViewById(R.id.lock1);
-        reelLock2 = (ImageView)findViewById(R.id.lock2);
-        reelLock3 = (ImageView)findViewById(R.id.lock3);
-        reelLock4 = (ImageView)findViewById(R.id.lock4);
-        reelLock5 = (ImageView)findViewById(R.id.lock5);
-
         findViewById(R.id.reel1).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 mCanvasReel1.lockColor(1);
-                reelLock1.setVisibility(View.VISIBLE);
             }
         });
 
@@ -93,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCanvasReel2.lockColor(2);
-                reelLock2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -101,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCanvasReel3.lockColor(3);
-                reelLock3.setVisibility(View.VISIBLE);
             }
         });
 
@@ -109,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCanvasReel4.lockColor(4);
-                reelLock4.setVisibility(View.VISIBLE);
             }
         });
 
@@ -117,30 +98,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCanvasReel5.lockColor(5);
-                reelLock5.setVisibility(View.VISIBLE);
             }
         });
-
-    }
-
-    private void unlockReels(boolean reel1, boolean reel2, boolean reel3, boolean reel4, boolean reel5) {
-
-        if(reel1){
-            reelLock1.setVisibility(View.INVISIBLE);
-        }
-        if(reel2){
-            reelLock2.setVisibility(View.INVISIBLE);
-        }
-        if(reel3){
-            reelLock3.setVisibility(View.INVISIBLE);
-        }
-        if(reel4){
-            reelLock4.setVisibility(View.INVISIBLE);
-        }
-        if(reel5){
-            reelLock5.setVisibility(View.INVISIBLE);
-        }
-
 
     }
 
@@ -201,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel3.resetLock();
                         mCanvasReel4.resetLock();
                         mCanvasReel5.resetLock();
-                        unlockReels(true,true,true,true,true);
 
                     }else currentCount++;
 
