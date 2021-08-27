@@ -118,6 +118,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/reel3"
         app:layout_constraintEnd_toEndOf="@+id/reel3"
+        app:layout_constraintStart_toStartOf="@+id/reel3"
         app:layout_constraintTop_toTopOf="@+id/reel3"
         app:srcCompat="@drawable/lock_final" />
 
