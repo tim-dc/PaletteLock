@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -57,7 +58,6 @@ public class CanvasReel1 extends View {
         mPaintCircle1 = new Paint();
         mPaintCircle1.setAntiAlias(true);
         mPaintCircle1.setColor(Color.parseColor("#264653"));
-
     }
 
 
@@ -79,6 +79,7 @@ public class CanvasReel1 extends View {
 
         }else {
             setLockStatus();
+
         }
 
     }
