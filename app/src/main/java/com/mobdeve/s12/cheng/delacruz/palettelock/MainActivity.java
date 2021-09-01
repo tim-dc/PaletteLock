@@ -231,42 +231,16 @@ public class MainActivity extends AppCompatActivity {
 
                     Random rand = new Random();
 
-                    int upperbound = 7;
+                    int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
 
                     // Reels 1 - 5
-
-                    // random num generator the index
-                    // get the hex values
+                    // random num generator the index get the hex values
                     pReel1.get(randomNum);
                     pReel2.get(randomNum);
                     pReel3.get(randomNum);
                     pReel4.get(randomNum);
                     pReel5.get(randomNum);
-                    // convert to rgb
-
-                    // input rgb in swapColor()
-
-//                    // Red Values
-//                    r1+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    r2+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    r3+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    r4+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    r5+=randomNum; randomNum = rand.nextInt(upperbound);
-//
-//                    // Green Values
-//                    g1+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    g2+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    g3+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    g4+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    g5+=randomNum; randomNum = rand.nextInt(upperbound);
-//
-//                    // Blue Values
-//                    b1+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    b2+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    b3+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    b4+=randomNum; randomNum = rand.nextInt(upperbound);
-//                    b5+=randomNum;
 
                     // Unlocking all reels
                     if(currentCount == 4)
@@ -280,16 +254,15 @@ public class MainActivity extends AppCompatActivity {
                         unlockReels(true,true,true,true,true);
                     }else currentCount++;
 
-
-
                     // Swap Colors
-                    mCanvasReel1.swapColor( pReel1.get(randomNum), mCanvasReel1.isLocked());
-                    mCanvasReel2.swapColor( pReel2.get(randomNum), mCanvasReel2.isLocked());
-                    mCanvasReel3.swapColor( pReel3.get(randomNum), mCanvasReel3.isLocked());
-                    mCanvasReel4.swapColor( pReel4.get(randomNum), mCanvasReel4.isLocked());
-                    mCanvasReel5.swapColor( pReel5.get(randomNum), mCanvasReel5.isLocked());
+                    mCanvasReel1.swapColor(pReel1.get(randomNum), mCanvasReel1.isLocked());
+                    mCanvasReel2.swapColor(pReel2.get(randomNum), mCanvasReel2.isLocked());
+                    mCanvasReel3.swapColor(pReel3.get(randomNum), mCanvasReel3.isLocked());
+                    mCanvasReel4.swapColor(pReel4.get(randomNum), mCanvasReel4.isLocked());
+                    mCanvasReel5.swapColor(pReel5.get(randomNum), mCanvasReel5.isLocked());
 
                     counter.setText(String.valueOf(currentCount));
+
 
 
                 }

@@ -78,6 +78,10 @@ public class CanvasReel1 extends View {
         postInvalidate();
     }
 
+    public void swapReferenceColor(String hexColor){
+        mPaintCircle1.setColor(Color.parseColor(hexColor));
+    }
+
     public void lockColor(int reelNum)
     {
         if(isLocked())
@@ -125,9 +129,8 @@ public class CanvasReel1 extends View {
         mRectSlot1.right = width;
         mRectSlot1.bottom = height;
 
-
-
 //        canvas.drawRect(mRectSlot1, mPaintSlot1);
+
         RectF rectF = new RectF (0,topOffset,width,height);
         canvas.drawRoundRect(rectF,35,35,mPaintSlot1);
         float cx, cy;
