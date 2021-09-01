@@ -3,6 +3,8 @@ package com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 
+import java.util.ArrayList;
+
 public class Helper {
 
     String title;
@@ -14,5 +16,7 @@ public class Helper {
     public String getTitle() {
         return title;
     }
+
+
 
 }

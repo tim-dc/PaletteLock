@@ -67,12 +67,12 @@ public class CanvasReel1 extends View {
     }
 
 
-    public void swapColor(int reelNum, int red, int green, int blue, boolean status) {
+    public void swapColor(String hexColor, boolean status) {
 
         if(status){
-
         }else{
-            mPaintSlot1.setColor(Color.rgb(red,green,blue));
+//            mPaintSlot1.setColor(Color.rgb(red,green,blue));
+              mPaintSlot1.setColor(Color.parseColor(hexColor));
         }
 
         postInvalidate();

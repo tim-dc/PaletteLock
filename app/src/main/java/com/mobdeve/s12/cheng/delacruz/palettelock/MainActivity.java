@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
     private CanvasReel4 mCanvasReel4;
     private CanvasReel5 mCanvasReel5;
 
+    private ArrayList<String> pReel1 = new ArrayList<String>();
+    private ArrayList<String> pReel2 = new ArrayList<String>();
+    private ArrayList<String> pReel3 = new ArrayList<String>();
+    private ArrayList<String> pReel4 = new ArrayList<String>();
+    private ArrayList<String> pReel5 = new ArrayList<String>();
+
+    // Hardcoded rgb values, Delete after arrays have their colors
     private int r1 = 22;
     private int r2 = 53;
     private int r3 = 100;
@@ -44,13 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
     private int currentCount=0;
 
-
     ImageView reelLock1;
     ImageView reelLock2;
     ImageView reelLock3;
     ImageView reelLock4;
     ImageView reelLock5;
-
 
     TextView counter;
 
@@ -84,6 +90,25 @@ public class MainActivity extends AppCompatActivity {
         reelLock4 = (ImageView)findViewById(R.id.lock4);
         reelLock5 = (ImageView)findViewById(R.id.lock5);
 
+        // Color Palletes (Color1,2,3,4,5) --->
+
+        // 8ecae6,219ebc,023047,ffb703,fb8500
+        pReel1.add("#8ecae6"); pReel2.add("#219ebc"); pReel3.add("#023047"); pReel4.add("#ffb703"); pReel5.add("#fb8500");
+        // 264653,2a9d8f,e9c46a,f4a261,e76f51
+        pReel1.add("#264653"); pReel2.add("#2a9d8f"); pReel3.add("#e9c46a"); pReel4.add("#f4a261"); pReel5.add("#e76f51");
+        // ccd5ae,e9edc9,fefae0,faedcd,d4a373
+        pReel1.add("#ccd5ae"); pReel2.add("#e9edc9"); pReel3.add("#fefae0"); pReel4.add("#faedcd"); pReel5.add("#d4a373");
+        // cdb4db,ffc8dd,ffafcc,bde0fe,a2d2ff
+        pReel1.add("#cdb4db"); pReel2.add("#ffc8dd"); pReel3.add("#ffafcc"); pReel4.add("#bde0fe"); pReel5.add("#a2d2ff");
+        // f4f1de,e07a5f,3d405b,81b29a,f2cc8f
+        pReel1.add("#f4f1de"); pReel2.add("#e07a5f"); pReel3.add("#3d405b"); pReel4.add("#81b29a"); pReel5.add("#f2cc8f");
+        // 22223b,4a4e69,9a8c98,c9ada7,f2e9e4
+        pReel1.add("#22223b"); pReel2.add("#4a4e69"); pReel3.add("#9a8c98"); pReel4.add("#c9ada7"); pReel5.add("#f2e9e4");
+        // 6f1d1b,bb9457,432818,99582a,ffe6a7
+        pReel1.add("#6f1d1b"); pReel2.add("#bb9457"); pReel3.add("#432818"); pReel4.add("#99582a"); pReel5.add("#ffe6a7");
+
+
+        // Home Button
         findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -91,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // Reels
         findViewById(R.id.reel1).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -130,6 +157,12 @@ public class MainActivity extends AppCompatActivity {
                 reelLock5.setVisibility(View.VISIBLE);
             }
         });
+
+    }
+
+    private void isMatching(int reelNum){
+
+
 
     }
 
@@ -198,44 +231,44 @@ public class MainActivity extends AppCompatActivity {
 
                     Random rand = new Random();
 
-                    int upperbound = 50;
+                    int upperbound = 7;
                     int randomNum = rand.nextInt(upperbound);
-                    r1+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    r2+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    r3+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    r4+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    r5+=randomNum;
 
-                    randomNum = rand.nextInt(upperbound);
-                    g1+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    g2+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    g3+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    g4+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    g5+=randomNum;
+                    // Reels 1 - 5
 
-                    randomNum = rand.nextInt(upperbound);
-                    b1+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    b2+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    b3+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    b4+=randomNum;
-                    randomNum = rand.nextInt(upperbound);
-                    b5+=randomNum;
+                    // random num generator the index
+                    // get the hex values
+                    pReel1.get(randomNum);
+                    pReel2.get(randomNum);
+                    pReel3.get(randomNum);
+                    pReel4.get(randomNum);
+                    pReel5.get(randomNum);
+                    // convert to rgb
 
-//                counterText.setText(currentCount);
+                    // input rgb in swapColor()
 
-                    // Current count = 4
+//                    // Red Values
+//                    r1+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    r2+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    r3+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    r4+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    r5+=randomNum; randomNum = rand.nextInt(upperbound);
+//
+//                    // Green Values
+//                    g1+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    g2+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    g3+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    g4+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    g5+=randomNum; randomNum = rand.nextInt(upperbound);
+//
+//                    // Blue Values
+//                    b1+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    b2+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    b3+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    b4+=randomNum; randomNum = rand.nextInt(upperbound);
+//                    b5+=randomNum;
 
+                    // Unlocking all reels
                     if(currentCount == 4)
                     {
                         currentCount = 1;
@@ -245,22 +278,20 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel4.resetLock();
                         mCanvasReel5.resetLock();
                         unlockReels(true,true,true,true,true);
-
                     }else currentCount++;
 
-                    // CurrentCount = 1
+
 
                     // Swap Colors
-//                mCanvasReel.swapColor();
-
-
-                    mCanvasReel1.swapColor(1,r1,g1,b1, mCanvasReel1.isLocked());
-                    mCanvasReel2.swapColor(2,r2,g2,b2, mCanvasReel2.isLocked());
-                    mCanvasReel3.swapColor(3,r3,g3,b3, mCanvasReel3.isLocked());
-                    mCanvasReel4.swapColor(4,r4,g4,b4, mCanvasReel4.isLocked());
-                    mCanvasReel5.swapColor(5,r5,g5,b5, mCanvasReel5.isLocked());
+                    mCanvasReel1.swapColor( pReel1.get(randomNum), mCanvasReel1.isLocked());
+                    mCanvasReel2.swapColor( pReel2.get(randomNum), mCanvasReel2.isLocked());
+                    mCanvasReel3.swapColor( pReel3.get(randomNum), mCanvasReel3.isLocked());
+                    mCanvasReel4.swapColor( pReel4.get(randomNum), mCanvasReel4.isLocked());
+                    mCanvasReel5.swapColor( pReel5.get(randomNum), mCanvasReel5.isLocked());
 
                     counter.setText(String.valueOf(currentCount));
+
+
                 }
             });
 
