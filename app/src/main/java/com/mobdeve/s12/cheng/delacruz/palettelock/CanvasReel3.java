@@ -19,7 +19,7 @@ public class CanvasReel3 extends View {
 
     private Paint mPaintSlot3;
 
-    private Paint mPaintCircle3;
+    private Paint mPaintCircle1;
     private boolean lockStatus3 = false;
 
     private static int width;
@@ -56,10 +56,18 @@ public class CanvasReel3 extends View {
 
         mPaintSlot3.setColor(Color.rgb(3,88,150));
 
-        mPaintCircle3 = new Paint();
-        mPaintCircle3.setAntiAlias(true);
-        mPaintCircle3.setColor(Color.parseColor("#e9c46a"));
+        mPaintCircle1 = new Paint();
+        mPaintCircle1.setAntiAlias(true);
+        mPaintCircle1.setColor(Color.parseColor("#e9c46a"));
 
+    }
+
+    public void changeGoalColor (String hexColor)
+    {
+        mPaintCircle1.setAntiAlias(true);
+        mPaintCircle1.setColor(Color.parseColor(hexColor));
+
+        postInvalidate();
     }
 
 
@@ -134,7 +142,7 @@ public class CanvasReel3 extends View {
         cx = getWidth() /2;
         cy = topOffset - mRectSlot3.top/2;
 
-        canvas.drawCircle(cx,cy,radius,mPaintCircle3);
+        canvas.drawCircle(cx,cy,radius,mPaintCircle1);
 
 
 

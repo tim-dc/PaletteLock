@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -31,24 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> pReel4 = new ArrayList<String>();
     private ArrayList<String> pReel5 = new ArrayList<String>();
 
-    // Hardcoded rgb values, Delete after arrays have their colors
-    private int r1 = 22;
-    private int r2 = 53;
-    private int r3 = 100;
-    private int r4 = 53;
-    private int r5 = 70;
+    private ArrayList<String> goal = new ArrayList<String>();
+    private ArrayList<String> currColor = new ArrayList<String>();
 
-    private int g1 = 44;
-    private int g2 = 2;
-    private int g3 = 5;
-    private int g4 = 77;
-    private int g5 = 44;
-
-    private int b1 = 53;
-    private int b2 = 100;
-    private int b3 = 83;
-    private int b4 = 30;
-    private int b5 = 40;
 
     private int currentCount=0;
 
@@ -59,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView reelLock5;
 
     TextView counter;
+
+    private boolean setFirstGoal = true;
+    private boolean setNewGoal = true;
 
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
 
@@ -160,10 +149,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void isMatching(int reelNum){
+    private void setFirstGoalTrue(){
+        setFirstGoal = true;
+    }
 
+    private void setFirstGoalFalse(){
+        setFirstGoal = false;
+    }
 
+    private void setNewGoalTrue(){
+        setNewGoal = true;
+    }
 
+    private void setNewGoalFalse(){
+        setNewGoal = false;
+    }
+
+    private boolean isMatching(String hexColor, String goalHexColor){
+        boolean isEqual = hexColor.equals(goalHexColor);
+
+        return isEqual;
     }
 
     private void unlockReels(boolean reel1, boolean reel2, boolean reel3, boolean reel4, boolean reel5) {
@@ -234,17 +239,35 @@ public class MainActivity extends AppCompatActivity {
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
 
-                    // Reels 1 - 5
-                    // random num generator the index get the hex values
-                    pReel1.get(randomNum);
-                    pReel2.get(randomNum);
-                    pReel3.get(randomNum);
-                    pReel4.get(randomNum);
-                    pReel5.get(randomNum);
+
+                    for(int i=0;i<5;i++)
+                    {
+                        currColor.add(" ");
+                    }
+
+                    // Initialize Goal
+                    if(setFirstGoal){
+                        goal.add(pReel1.get(randomNum));
+                        goal.add(pReel2.get(randomNum));
+                        goal.add(pReel3.get(randomNum));
+                        goal.add(pReel4.get(randomNum));
+                        goal.add(pReel5.get(randomNum));
+                        mCanvasReel1.changeGoalColor(pReel1.get(randomNum));
+                        mCanvasReel2.changeGoalColor(pReel2.get(randomNum));
+                        mCanvasReel3.changeGoalColor(pReel3.get(randomNum));
+                        mCanvasReel4.changeGoalColor(pReel4.get(randomNum));
+                        mCanvasReel5.changeGoalColor(pReel5.get(randomNum));
+                        setFirstGoalFalse();
+                        setNewGoalFalse();
+                    }
+
+                    // IF ALL MATCHING
+                    if(isMatching(currColor.get(0),goal.get(0))){
+                        System.out.println("Matching 0");
+                    }
 
                     // Unlocking all reels
-                    if(currentCount == 4)
-                    {
+                    if(currentCount == 4) {
                         currentCount = 1;
                         mCanvasReel1.resetLock();
                         mCanvasReel2.resetLock();
@@ -254,11 +277,35 @@ public class MainActivity extends AppCompatActivity {
                         unlockReels(true,true,true,true,true);
                     }else currentCount++;
 
+                    if(setNewGoal){
+                        goal.set(0,pReel1.get(randomNum));
+                        goal.set(1,pReel2.get(randomNum));
+                        goal.set(2,pReel3.get(randomNum));
+                        goal.set(3,pReel4.get(randomNum));
+                        goal.set(4,pReel5.get(randomNum));
+                        mCanvasReel1.changeGoalColor(pReel1.get(randomNum));
+                        mCanvasReel2.changeGoalColor(pReel2.get(randomNum));
+                        mCanvasReel3.changeGoalColor(pReel3.get(randomNum));
+                        mCanvasReel4.changeGoalColor(pReel4.get(randomNum));
+                        mCanvasReel5.changeGoalColor(pReel5.get(randomNum));
+                    }
+
                     // Swap Colors
+                    // Reels 1 - 5 random num gen
+                        randomNum = rand.nextInt(upperbound);
+                    currColor.set(0,pReel1.get(randomNum));
                     mCanvasReel1.swapColor(pReel1.get(randomNum), mCanvasReel1.isLocked());
+                        randomNum = rand.nextInt(upperbound);
+                    currColor.set(1,pReel2.get(randomNum));
                     mCanvasReel2.swapColor(pReel2.get(randomNum), mCanvasReel2.isLocked());
+                        randomNum = rand.nextInt(upperbound);
+                    currColor.set(2,pReel3.get(randomNum));
                     mCanvasReel3.swapColor(pReel3.get(randomNum), mCanvasReel3.isLocked());
+                        randomNum = rand.nextInt(upperbound);
+                    currColor.set(3,pReel4.get(randomNum));
                     mCanvasReel4.swapColor(pReel4.get(randomNum), mCanvasReel4.isLocked());
+                        randomNum = rand.nextInt(upperbound);
+                    currColor.set(4,pReel5.get(randomNum));
                     mCanvasReel5.swapColor(pReel5.get(randomNum), mCanvasReel5.isLocked());
 
                     counter.setText(String.valueOf(currentCount));

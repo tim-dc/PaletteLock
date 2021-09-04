@@ -66,6 +66,13 @@ public class CanvasReel1 extends View {
         mPaintCircle2.setColor(Color.parseColor("#faf8ef"));
     }
 
+    public void changeGoalColor (String hexColor)
+    {
+        mPaintCircle1.setAntiAlias(true);
+        mPaintCircle1.setColor(Color.parseColor(hexColor));
+
+        postInvalidate();
+    }
 
     public void swapColor(String hexColor, boolean status) {
 
