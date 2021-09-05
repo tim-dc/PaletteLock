@@ -19,10 +19,12 @@ public class CanvasReel5 extends View {
 
     private Paint mPaintSlot5;
     private Paint mPaintCircle1;
-    private boolean lockStatus5 = false;
+    private boolean lockStatus = false;
 
     private static int width;
     private static int height;
+
+    private boolean matchingStatus = false;
 
     public CanvasReel5(Context context) {
         super(context);
@@ -81,7 +83,7 @@ public class CanvasReel5 extends View {
         postInvalidate();
     }
 
-    public void lockColor(int reelNum)
+    public void lockColor()
     {
         if(isLocked())
         {
@@ -92,20 +94,45 @@ public class CanvasReel5 extends View {
 
     }
 
+    public boolean getLockStatus()
+    {
+        return lockStatus;
+    }
+
+    public boolean isMatchingStatus(){
+        return matchingStatus;
+    }
+
+    public void setMatchingStatus(boolean matchStatus){
+        matchingStatus = matchStatus;
+    }
+
     public void setLockStatus(){
-        lockStatus5 = true;
+        lockStatus = true;
     }
 
     public boolean isLocked()
     {
-        return lockStatus5;
+        return lockStatus;
     }
 
-    public void resetLock(){
-
-        lockStatus5 = false;
+    public void resetLock(boolean allMatched){
 
         // if already complete, don't unlock
+
+//        System.out.println("Reel1: LS: " + lockStatus + " MS: " + matchingStatus );
+        if(matchingStatus){
+            // If all colors are matching
+            if(allMatched)
+            {
+                lockStatus = false;
+                matchingStatus = false;
+            }else {
+                lockStatus = true;
+                matchingStatus = true;
+            }
+        }else
+            lockStatus = false;
     }
 
     @Override
