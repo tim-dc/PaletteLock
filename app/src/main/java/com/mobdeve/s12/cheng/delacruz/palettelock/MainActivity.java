@@ -112,40 +112,69 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.reel1).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mCanvasReel1.lockColor();
+                mCanvasReel1.lockColor(true);
                 reelLock1.setVisibility(View.VISIBLE);
+
+                if(isMatching(currColor.get(0),goal.get(0))){
+//                        System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
+                    mCanvasReel1.setMatchingStatus(true);
+                }
             }
         });
 
         findViewById(R.id.reel2).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mCanvasReel2.lockColor();
+                mCanvasReel2.lockColor(true);
                 reelLock2.setVisibility(View.VISIBLE);
+
+
+                if(isMatching(currColor.get(1),goal.get(1))){
+//                        System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
+                    mCanvasReel2.setMatchingStatus(true);
+                }
+
             }
         });
 
         findViewById(R.id.reel3).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mCanvasReel3.lockColor();
+                mCanvasReel3.lockColor(true);
                 reelLock3.setVisibility(View.VISIBLE);
+
+                if(isMatching(currColor.get(2),goal.get(2))){
+//                        System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
+                    mCanvasReel3.setMatchingStatus(true);
+                }
+
             }
         });
 
         findViewById(R.id.reel4).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mCanvasReel4.lockColor();
+                mCanvasReel4.lockColor(true);
                 reelLock4.setVisibility(View.VISIBLE);
+
+                if(isMatching(currColor.get(3),goal.get(3))){
+//                        System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
+                    mCanvasReel4.setMatchingStatus(true);
+                }
+
             }
         });
 
         findViewById(R.id.reel5).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mCanvasReel5.lockColor();
+                mCanvasReel5.lockColor(true);
                 reelLock5.setVisibility(View.VISIBLE);
+
+                if(isMatching(currColor.get(4),goal.get(4))){
+//                        System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
+                    mCanvasReel5.setMatchingStatus(true);
+                }
             }
         });
 
@@ -176,46 +205,46 @@ public class MainActivity extends AppCompatActivity {
     private void unlockReels(boolean reel1, boolean reel2, boolean reel3, boolean reel4, boolean reel5,
                              boolean match1, boolean match2, boolean match3, boolean match4, boolean match5, boolean allMatching) {
 
-
         if(allMatching){
             reelLock1.setVisibility(View.INVISIBLE);
             reelLock2.setVisibility(View.INVISIBLE);
             reelLock3.setVisibility(View.INVISIBLE);
             reelLock4.setVisibility(View.INVISIBLE);
             reelLock5.setVisibility(View.INVISIBLE);
+            mCanvasReel1.setLockStatus(false);
+            mCanvasReel2.setLockStatus(false);
+            mCanvasReel3.setLockStatus(false);
+            mCanvasReel4.setLockStatus(false);
+            mCanvasReel5.setLockStatus(false);
 
         }else{
-            System.out.println("reel1 : " + reel1 + " " + match1);
-            System.out.println("reel2 : " + reel2 + " " + match2);
-            System.out.println("reel3 : " + reel3 + " " + match3);
-            System.out.println("reel4 : " + reel4 + " " + match4);
-            System.out.println("reel5 : " + reel5 + " " + match5 + "ENDS HERE\n");
-
+            System.out.println("reel1: " + reel1 + " match1: " + match1 );
+            System.out.println("reel2: " + reel2 + " match2: " + match2 );
+            System.out.println("reel3: " + reel3 + " match3: " + match3 );
+            System.out.println("reel4: " + reel4 + " match4: " + match4 );
+            System.out.println("reel5: " + reel5 + " match5: " + match5 );
             if(reel1 && !match1){
                 reelLock1.setVisibility(View.INVISIBLE);
+                mCanvasReel1.setLockStatus(false);
             }
             if(reel2 && !match2){
                 reelLock2.setVisibility(View.INVISIBLE);
+                mCanvasReel2.setLockStatus(false);
             }
             if(reel3 && !match3){
                 reelLock3.setVisibility(View.INVISIBLE);
+                mCanvasReel3.setLockStatus(false);
             }
             if(reel4 && !match4){
                 reelLock4.setVisibility(View.INVISIBLE);
+                mCanvasReel4.setLockStatus(false);
             }
             if(reel5 && !match5){
                 reelLock5.setVisibility(View.INVISIBLE);
+                mCanvasReel5.setLockStatus(false);
             }
         }
 
-    }
-
-    private void resetAllReelsStatus(boolean allMatching){
-        mCanvasReel1.resetLock(allMatching);
-        mCanvasReel2.resetLock(allMatching);
-        mCanvasReel3.resetLock(allMatching);
-        mCanvasReel4.resetLock(allMatching);
-        mCanvasReel5.resetLock(allMatching);
     }
 
     private void showConfirmExit(){
@@ -265,14 +294,12 @@ public class MainActivity extends AppCompatActivity {
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
 
-
-                    for(int i=0;i<5;i++)
-                    {
-                        currColor.add(" ");
-                    }
-
                     // Initialize Goal
                     if(setFirstGoal){
+                        for(int i=0;i<5;i++)
+                        {
+                            currColor.add(" ");
+                        }
                         goal.add(pReel1.get(randomNum));
                         goal.add(pReel2.get(randomNum));
                         goal.add(pReel3.get(randomNum));
@@ -289,32 +316,28 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // IF ALL MATCHING
-                    if(isMatching(currColor.get(0),goal.get(0))){
-                        mCanvasReel1.setMatchingStatus(true);
-                    }
-                    if(isMatching(currColor.get(1),goal.get(1))){
-                        mCanvasReel2.setMatchingStatus(true);
-                    }
-                    if(isMatching(currColor.get(2),goal.get(2))){
-                        mCanvasReel3.setMatchingStatus(true);
-                    }
-                    if(isMatching(currColor.get(3),goal.get(3))){
-                        mCanvasReel4.setMatchingStatus(true);
-                    }
-                    if(isMatching(currColor.get(4),goal.get(4))){
-                        mCanvasReel5.setMatchingStatus(true);
-                    }
+//                    System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
+//                    System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
+//                    System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
+//                    System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
+//                    System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
 
-                    if( mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
+                    if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
                         allMatching = true;
+                        // Set New Goal
                         setNewGoalTrue();
                         mCanvasReel1.setMatchingStatus(false);
                         mCanvasReel2.setMatchingStatus(false);
                         mCanvasReel3.setMatchingStatus(false);
                         mCanvasReel4.setMatchingStatus(false);
                         mCanvasReel5.setMatchingStatus(false);
+                        mCanvasReel1.setLockStatus(false);
+                        mCanvasReel2.setLockStatus(false);
+                        mCanvasReel3.setLockStatus(false);
+                        mCanvasReel4.setLockStatus(false);
+                        mCanvasReel5.setLockStatus(false);
                     }
 
                     // Test only
@@ -328,13 +351,23 @@ public class MainActivity extends AppCompatActivity {
 
                     // Unlocking all reels
                     if(currentCount == 4) {
+                        // Counting  from 1
                         currentCount = 1;
-                        resetAllReelsStatus(allMatching);
+                        // Check if all matching / some are matching
                         unlockReels(mCanvasReel1.getLockStatus(),mCanvasReel2.getLockStatus(),mCanvasReel3.getLockStatus(),mCanvasReel4.getLockStatus(),mCanvasReel5.getLockStatus(),
                                     mCanvasReel1.isMatchingStatus(),mCanvasReel2.isMatchingStatus(),mCanvasReel3.isMatchingStatus(),mCanvasReel4.isMatchingStatus(),mCanvasReel5.isMatchingStatus(), allMatching);
                     }else currentCount++;
 
+                    // If All Matching --> Set a new Goal
                     if(setNewGoal){
+
+                        // Reset
+                        reelLock1.setVisibility(View.VISIBLE);
+                        reelLock2.setVisibility(View.VISIBLE);
+                        reelLock3.setVisibility(View.VISIBLE);
+                        reelLock4.setVisibility(View.VISIBLE);
+                        reelLock5.setVisibility(View.VISIBLE);
+
                         goal.set(0,pReel1.get(randomNum));
                         goal.set(1,pReel2.get(randomNum));
                         goal.set(2,pReel3.get(randomNum));

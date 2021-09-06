@@ -83,15 +83,9 @@ public class CanvasReel5 extends View {
         postInvalidate();
     }
 
-    public void lockColor()
+    public void lockColor(boolean status)
     {
-        if(isLocked())
-        {
-
-        }else {
-            setLockStatus();
-        }
-
+        setLockStatus(status);
     }
 
     public boolean getLockStatus()
@@ -107,32 +101,13 @@ public class CanvasReel5 extends View {
         matchingStatus = matchStatus;
     }
 
-    public void setLockStatus(){
-        lockStatus = true;
+    public void setLockStatus(boolean status){
+        lockStatus = status;
     }
 
     public boolean isLocked()
     {
         return lockStatus;
-    }
-
-    public void resetLock(boolean allMatched){
-
-        // if already complete, don't unlock
-
-//        System.out.println("Reel1: LS: " + lockStatus + " MS: " + matchingStatus );
-        if(matchingStatus){
-            // If all colors are matching
-            if(allMatched)
-            {
-                lockStatus = false;
-                matchingStatus = false;
-            }else {
-                lockStatus = true;
-                matchingStatus = true;
-            }
-        }else
-            lockStatus = false;
     }
 
     @Override
