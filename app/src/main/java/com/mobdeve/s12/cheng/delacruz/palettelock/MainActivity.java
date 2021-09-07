@@ -315,13 +315,6 @@ public class MainActivity extends AppCompatActivity {
                         setNewGoalFalse();
                     }
 
-                    // IF ALL MATCHING
-//                    System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
-//                    System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
-//                    System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
-//                    System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
-//                    System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
-
                     if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
@@ -362,11 +355,11 @@ public class MainActivity extends AppCompatActivity {
                     if(setNewGoal){
 
                         // Reset
-                        reelLock1.setVisibility(View.VISIBLE);
-                        reelLock2.setVisibility(View.VISIBLE);
-                        reelLock3.setVisibility(View.VISIBLE);
-                        reelLock4.setVisibility(View.VISIBLE);
-                        reelLock5.setVisibility(View.VISIBLE);
+                        reelLock1.setVisibility(View.INVISIBLE);
+                        reelLock2.setVisibility(View.INVISIBLE);
+                        reelLock3.setVisibility(View.INVISIBLE);
+                        reelLock4.setVisibility(View.INVISIBLE);
+                        reelLock5.setVisibility(View.INVISIBLE);
 
                         goal.set(0,pReel1.get(randomNum));
                         goal.set(1,pReel2.get(randomNum));
@@ -423,9 +416,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                     counter.setText(String.valueOf(currentCount));
-
-
-
                 }
             });
 
