@@ -6,27 +6,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterLevel;
+import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterScore;
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.Helper;
+import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.HelperScore;
 
 import java.util.ArrayList;
 
-public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListItemClickListener{
+public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListItemClickListener {
 
     RecyclerView levelRecycler;
     RecyclerView.Adapter adapter;
+    RecyclerView scoreRecycler;
+    RecyclerView.Adapter scoreAdapter;
+
+    //private ListView listView;
+    ScoreDatabase scoreDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,7 +63,6 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 showHighScore();
             }
         });
-
         levelRecycler = findViewById(R.id.my_recycler);
         levelRecycler();
     }
@@ -92,6 +99,13 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
         Dialog dialog = new Dialog(this, R.style.DialogStyle);
         dialog.setContentView(R.layout.highscore_popup);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+        scoreRecycler = dialog.getWindow().findViewById(R.id.scoreList);
+
+        scoreRecycler();
+        //listView = findViewById(R.id.scoreList);
+        scoreDB = new ScoreDatabase(this);
+
+        //listScoreView();
 
         ImageView btnClose = dialog.findViewById(R.id.btn_close);
 
@@ -107,6 +121,40 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
 
 
         dialog.show();
+    }
+
+    private void listScoreView(){
+        Cursor data = scoreDB.getData();
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        while (data.moveToNext())
+        {
+            list.add(data.getInt(2));
+        }
+
+        System.out.println(list);
+
+        //ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+        //listView.setAdapter(adapter);
+    }
+
+    private void scoreRecycler(){
+
+        scoreRecycler.setHasFixedSize(true);
+        scoreRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        ArrayList<HelperScore> all_score = new ArrayList<>();
+        all_score.add(new HelperScore("Level 1", 0));
+        all_score.add(new HelperScore("Level 2", 0));
+        all_score.add(new HelperScore("Level 3", 0));
+        all_score.add(new HelperScore("Level 4", 0));
+        all_score.add(new HelperScore("Level 5", 0));
+        all_score.add(new HelperScore("Level 6", 0));
+        all_score.add(new HelperScore("Level 7", 0));
+
+        scoreAdapter = new AdapterScore(all_score);
+        scoreRecycler.setAdapter(scoreAdapter);
     }
 
     private void levelRecycler() {

@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean setNewGoal = true;
     private boolean allMatching = false;
 
+    ScoreDatabase scoreDB;
+    ScoreModel scoreModel = new ScoreModel();;
+
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
 
     @Override
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+
+        scoreDB = new ScoreDatabase(this);
 
         timer = new Timer();
         Metronome metronome = new Metronome();
@@ -290,12 +296,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void addData(int score, int level)
+    {
+        boolean insertData = scoreDB.addData(score, level);
+
+        if(insertData)
+        {
+            System.out.println("Success");
+        }
+        else
+        {
+            System.out.println("Fail");
+        }
+    }
+
 
     private class Metronome extends TimerTask {
 
-        private void setTimer(){
-
-        }
 
         @Override
         public void run() {
@@ -325,6 +342,9 @@ public class MainActivity extends AppCompatActivity {
                     if (timeCounter >= 30) // change the 30 to the length of music
                     {
                         System.out.println("END TIMER!");
+                        scoreModel.setScore(currentScore);
+                        scoreModel.setLevel(1);
+                        addData(currentScore, 1);
                         timer.cancel();
                         return;
                     }
