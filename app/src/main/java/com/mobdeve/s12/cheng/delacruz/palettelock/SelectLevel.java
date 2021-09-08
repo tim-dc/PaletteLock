@@ -6,27 +6,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterLevel;
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.Helper;
 
 import java.util.ArrayList;
 
-public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListItemClickListener{
+public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListItemClickListener {
+
+    public static final String GAME_LEVEL = "levelSelected";
 
     RecyclerView levelRecycler;
     RecyclerView.Adapter adapter;
+    RecyclerView scoreRecycler;
+    RecyclerView.Adapter scoreAdapter;
+
+    TextView score_level;
+    TextView level;
+    RelativeLayout relativeLayout;
+
+    int currentLevelScore = 1;
+
+
+    //private ListView listView;
+    ScoreDatabase scoreDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,7 +72,6 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 showHighScore();
             }
         });
-
         levelRecycler = findViewById(R.id.my_recycler);
         levelRecycler();
     }
@@ -64,7 +80,6 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
         Dialog dialog = new Dialog(this, R.style.DialogStyle);
         dialog.setContentView(R.layout.info_popup);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
-
         ImageView btnClose = dialog.findViewById(R.id.btn_close);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
 
@@ -92,10 +107,27 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
         Dialog dialog = new Dialog(this, R.style.DialogStyle);
         dialog.setContentView(R.layout.highscore_popup);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+        //scoreRecycler = dialog.getWindow().findViewById(R.id.scoreList);
+
+        //scoreRecycler();
+        //listView = findViewById(R.id.scoreList);
+        scoreDB = new ScoreDatabase(this);
+
+
+        int position;
 
         ImageView btnClose = dialog.findViewById(R.id.btn_close);
+        ImageButton next = dialog.findViewById(R.id.next);
+        ImageButton back = dialog.findViewById(R.id.back);
+
+        score_level = dialog.findViewById(R.id.scoreText);
+        level = dialog.findViewById(R.id.levelText);
+        relativeLayout = dialog.findViewById(R.id.background);
 
         dialog.setCanceledOnTouchOutside(false);
+
+        listScoreView();
+
         //dialog.setCancelable(false);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +137,67 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
             }
         });
 
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentLevelScore++;
+                listScoreView();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentLevelScore--;
+                listScoreView();
+                //dialog.dismiss();
+            }
+        });
+
 
         dialog.show();
     }
+
+    private void listScoreView(){
+
+        Cursor data = scoreDB.getData(currentLevelScore);
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        while (data.moveToNext())
+        {
+            list.add(data.getInt(2));
+        }
+
+        System.out.println(list);
+
+        if(list.size() > 0 && currentLevelScore != 0)
+        {
+            score_level.setText(String.valueOf(list.get(0)));
+            level.setText("Level " + currentLevelScore);
+        }
+        else
+        {
+            data = scoreDB.getData(1);
+
+            list = new ArrayList<>();
+
+            while (data.moveToNext())
+            {
+                list.add(data.getInt(2));
+            }
+
+            currentLevelScore = 1;
+
+            score_level.setText(String.valueOf(list.get(0)));
+            level.setText("Level " + 1);
+        }
+
+
+        //ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+        //listView.setAdapter(adapter);
+    }
+
 
     private void levelRecycler() {
 
@@ -138,27 +228,37 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
     @Override
     public void onListClick(int clickedItemIndex) {
 
-
             Intent mIntent;
+
             switch (clickedItemIndex){
                 case 0: //first item in Recycler view
                     mIntent  = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 1);
                     startActivity(mIntent);
                     break;
                 case 1: //second item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 2);
                     startActivity(mIntent);
                     break;
                 case 2: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 3);
+
                     startActivity(mIntent);
                     break;
-                      case 3: //third item in Recycler view
+                case 3: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 4);
+
+                          //clickLevel = 4;
                     startActivity(mIntent);
                     break;
                 case 4: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 5);
+
+                    //clickLevel = 5;
                     startActivity(mIntent);
                     break;
 

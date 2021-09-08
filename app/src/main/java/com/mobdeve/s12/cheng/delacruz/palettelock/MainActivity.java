@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
+    SelectLevel selectLevel;
 
     private CanvasReel1 mCanvasReel1;
     private CanvasReel2 mCanvasReel2;
@@ -35,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> goal = new ArrayList<String>();
     private ArrayList<String> currColor = new ArrayList<String>();
 
-    private int testCounter = 0;
+    private int timeCounter = 0;
 
+    private int testCounter = 0;
     private int currentCount=0;
+    private int time = 6000;
+    public int level;
 
     ImageView reelLock1;
     ImageView reelLock2;
@@ -46,10 +52,20 @@ public class MainActivity extends AppCompatActivity {
     ImageView reelLock5;
 
     TextView counter;
+    TextView score;
+
+    Timer timer;
+
+    private int currentScore = 0;
 
     private boolean setFirstGoal = true;
     private boolean setNewGoal = true;
     private boolean allMatching = false;
+
+    //public static final int GAME_LEVEL = 0;
+
+    ScoreDatabase scoreDB;
+    ScoreModel scoreModel = new ScoreModel();;
 
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
 
@@ -62,13 +78,20 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Timer timer = new Timer();
+        Intent intent = getIntent();
+        level = intent.getIntExtra(SelectLevel.GAME_LEVEL, 1);
+        System.out.println(level);
+
+        scoreDB = new ScoreDatabase(this);
+
+        timer = new Timer();
         Metronome metronome = new Metronome();
         timer.schedule(metronome,
                 2000,
                 2000);
 
         counter = findViewById(R.id.counter);
+        score = findViewById(R.id.score);
         mCanvasReel1 = findViewById(R.id.reel1);
         mCanvasReel2 = findViewById(R.id.reel2);
         mCanvasReel3 = findViewById(R.id.reel3);
@@ -97,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
         pReel1.add("#22223b"); pReel2.add("#4a4e69"); pReel3.add("#9a8c98"); pReel4.add("#c9ada7"); pReel5.add("#f2e9e4");
         // 6f1d1b,bb9457,432818,99582a,ffe6a7
         pReel1.add("#6f1d1b"); pReel2.add("#bb9457"); pReel3.add("#432818"); pReel4.add("#99582a"); pReel5.add("#ffe6a7");
+
+
 
 
         // Home Button
@@ -272,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent mIntent;
                 mIntent = new Intent(MainActivity.this, SelectLevel.class);
                 startActivity(mIntent);
+                timer.cancel();
                 finish();
             }
         });
@@ -280,10 +306,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void addData(int score, int level)
+    {
+        boolean insertData = scoreDB.addData(score, level);
+
+        if(insertData)
+        {
+            System.out.println("Success");
+        }
+        else
+        {
+            System.out.println("Fail");
+        }
+    }
+
+    private void showGameOver(){
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.game_over_popup);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        TextView score = dialog.findViewById(R.id.txtScore);
+        dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
+
+        score.setText(String.valueOf(currentScore));
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
+
+            }
+        });
+
+        dialog.show();
+    }
+
+
     private class Metronome extends TimerTask {
+
 
         @Override
         public void run() {
+
 
             runOnUiThread(new Runnable() {
                 @Override
@@ -293,6 +359,31 @@ public class MainActivity extends AppCompatActivity {
 
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
+
+                    /*long now = System.currentTimeMillis(); // current time in ms
+                    time -= now; // adjust remaining time
+
+                    if (time == 0) {
+                        // Stop updating now.
+
+                        timer.cancel();
+
+                        System.out.println("END TIMER!");
+                    }*/
+
+                    timeCounter++;
+
+                    if (timeCounter >= 30) // change the 30 to the length of music
+                    {
+                        System.out.println("END TIMER!");
+                        scoreModel.setScore(currentScore);
+                        scoreModel.setLevel(level);
+                        System.out.println(level);
+                        addData(currentScore, level);
+                        timer.cancel();
+                        showGameOver();
+                    }
+
 
                     // Initialize Goal
                     if(setFirstGoal){
@@ -315,6 +406,8 @@ public class MainActivity extends AppCompatActivity {
                         setNewGoalFalse();
                     }
 
+
+
                     if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
@@ -331,6 +424,11 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel3.setLockStatus(false);
                         mCanvasReel4.setLockStatus(false);
                         mCanvasReel5.setLockStatus(false);
+
+                        currentScore++;
+                        score.setText(String.valueOf(currentScore));
+
+
                     }
 
                     // Test only
