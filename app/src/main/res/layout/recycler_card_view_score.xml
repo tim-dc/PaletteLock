@@ -8,6 +8,7 @@
     android:id="@+id/select_card"
     app:cardElevation="6dp"
     app:strokeColor="#5C3D2E"
+    android:background="#FAF3E0"
     app:strokeWidth="@dimen/cardview_default_radius"
     >
 
@@ -15,7 +16,7 @@
         android:id="@+id/background"
         android:layout_width="160dp"
         android:layout_height="match_parent"
-        android:background="#faf8ef"
+        android:background="#FAF3E0"
         android:padding="5dp">
 
         <TextView
