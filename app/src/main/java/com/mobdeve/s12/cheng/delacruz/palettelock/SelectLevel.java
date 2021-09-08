@@ -19,9 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterLevel;
-import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.AdapterScore;
 import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.Helper;
-import com.mobdeve.s12.cheng.delacruz.palettelock.Helpers.HelperClasses.HelperScore;
 
 import java.util.ArrayList;
 
@@ -200,23 +198,6 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
         //listView.setAdapter(adapter);
     }
 
-    private void scoreRecycler(){
-
-        scoreRecycler.setHasFixedSize(true);
-        scoreRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        ArrayList<HelperScore> all_score = new ArrayList<>();
-        all_score.add(new HelperScore("Level 1", 0));
-        all_score.add(new HelperScore("Level 2", 0));
-        all_score.add(new HelperScore("Level 3", 0));
-        all_score.add(new HelperScore("Level 4", 0));
-        all_score.add(new HelperScore("Level 5", 0));
-        all_score.add(new HelperScore("Level 6", 0));
-        all_score.add(new HelperScore("Level 7", 0));
-
-        scoreAdapter = new AdapterScore(all_score);
-        scoreRecycler.setAdapter(scoreAdapter);
-    }
 
     private void levelRecycler() {
 
@@ -253,13 +234,11 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 case 0: //first item in Recycler view
                     mIntent  = new Intent(SelectLevel.this, MainActivity.class);
                     mIntent.putExtra(GAME_LEVEL, 1);
-                    System.out.println("ha");
                     startActivity(mIntent);
                     break;
                 case 1: //second item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
                     mIntent.putExtra(GAME_LEVEL, 2);
-                    System.out.println("hatdog");
                     startActivity(mIntent);
                     break;
                 case 2: //third item in Recycler view
