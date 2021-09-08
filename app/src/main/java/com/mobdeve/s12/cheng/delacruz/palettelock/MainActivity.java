@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int testCounter = 0;
     private int currentCount=0;
-    private int time = 6000;
     public int level;
 
     ImageView reelLock1;
@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
     ScoreDatabase scoreDB;
     ScoreModel scoreModel = new ScoreModel();;
 
+    MediaPlayer player;
+
+    public int blackSwan1;
+    public int blackSwan2;
+    public int blackSwan3;
+
+    public int blackSwanDelay;
+    public int blackSwanDelay2;
+
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
 
     @Override
@@ -86,9 +95,23 @@ public class MainActivity extends AppCompatActivity {
 
         timer = new Timer();
         Metronome metronome = new Metronome();
+        // based on BPM
+
+        play();
+
+        //blackSwan1 = 1200;
+        //blackSwan2 = 2400;
+
+        blackSwan1 = 937;
+        blackSwan2 = 1874;
+        blackSwan3 = 469;
+
+        blackSwanDelay = 3400;
+
+        // period is key
         timer.schedule(metronome,
-                2000,
-                2000);
+                blackSwanDelay,
+                blackSwan3);
 
         counter = findViewById(R.id.counter);
         score = findViewById(R.id.score);
@@ -205,6 +228,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void play(){
+        if(player == null)
+        {
+            player = MediaPlayer.create(this, R.raw.black_swan);
+
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+
+        player.start();
+    }
+
+    private void stopPlayer(){
+        if (player != null)
+        {
+            player.release();
+            player = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopPlayer();
+    }
+
     private void setFirstGoalTrue(){
         setFirstGoal = true;
     }
@@ -297,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent mIntent;
                 mIntent = new Intent(MainActivity.this, SelectLevel.class);
                 startActivity(mIntent);
+                stopPlayer();
                 timer.cancel();
                 finish();
             }
@@ -373,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
 
                     timeCounter++;
 
-                    if (timeCounter >= 30) // change the 30 to the length of music
+                    if (timeCounter >= 60) // change the 30 to the length of music
                     {
                         System.out.println("END TIMER!");
                         scoreModel.setScore(currentScore);
