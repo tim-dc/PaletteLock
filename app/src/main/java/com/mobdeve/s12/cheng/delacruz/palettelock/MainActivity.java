@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> goal = new ArrayList<String>();
     private ArrayList<String> currColor = new ArrayList<String>();
 
-    private int testCounter = 0;
+    private int timeCounter = 0;
 
+    private int testCounter = 0;
     private int currentCount=0;
+    private int time = 6000;
 
     ImageView reelLock1;
     ImageView reelLock2;
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView reelLock5;
 
     TextView counter;
+    TextView score;
+
+    Timer timer;
+
+    private int currentScore = 0;
 
     private boolean setFirstGoal = true;
     private boolean setNewGoal = true;
@@ -62,13 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Timer timer = new Timer();
+        timer = new Timer();
         Metronome metronome = new Metronome();
         timer.schedule(metronome,
                 2000,
                 2000);
 
         counter = findViewById(R.id.counter);
+        score = findViewById(R.id.score);
         mCanvasReel1 = findViewById(R.id.reel1);
         mCanvasReel2 = findViewById(R.id.reel2);
         mCanvasReel3 = findViewById(R.id.reel3);
@@ -97,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         pReel1.add("#22223b"); pReel2.add("#4a4e69"); pReel3.add("#9a8c98"); pReel4.add("#c9ada7"); pReel5.add("#f2e9e4");
         // 6f1d1b,bb9457,432818,99582a,ffe6a7
         pReel1.add("#6f1d1b"); pReel2.add("#bb9457"); pReel3.add("#432818"); pReel4.add("#99582a"); pReel5.add("#ffe6a7");
+
+
 
 
         // Home Button
@@ -280,7 +290,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private class Metronome extends TimerTask {
+
+        private void setTimer(){
+
+        }
 
         @Override
         public void run() {
@@ -293,6 +308,27 @@ public class MainActivity extends AppCompatActivity {
 
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
+
+                    /*long now = System.currentTimeMillis(); // current time in ms
+                    time -= now; // adjust remaining time
+
+                    if (time == 0) {
+                        // Stop updating now.
+
+                        timer.cancel();
+
+                        System.out.println("END TIMER!");
+                    }*/
+
+                    timeCounter++;
+
+                    if (timeCounter >= 30) // change the 30 to the length of music
+                    {
+                        System.out.println("END TIMER!");
+                        timer.cancel();
+                        return;
+                    }
+
 
                     // Initialize Goal
                     if(setFirstGoal){
@@ -315,6 +351,8 @@ public class MainActivity extends AppCompatActivity {
                         setNewGoalFalse();
                     }
 
+
+
                     if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
@@ -331,6 +369,11 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel3.setLockStatus(false);
                         mCanvasReel4.setLockStatus(false);
                         mCanvasReel5.setLockStatus(false);
+
+                        currentScore++;
+                        score.setText(String.valueOf(currentScore));
+
+
                     }
 
                     // Test only
