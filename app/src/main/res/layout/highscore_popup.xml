@@ -26,19 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="251dp">
 
+
             <TextView
                 android:id="@+id/txttitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="52dp"
                 android:fontFamily="@font/indie_flower"
-                android:text="High Score"
+                android:text="High Scores"
                 android:textColor="#5C3D2E"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <FrameLayout
                 android:id="@+id/btn_highscore"
@@ -54,7 +55,7 @@
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txttitle" >
+                app:layout_constraintTop_toBottomOf="@+id/txttitle">
 
 
             </FrameLayout>
@@ -75,11 +76,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Level 1"
-                android:textSize="20dp"
                 android:fontFamily="@font/indie_flower"
-                android:textColor="#5C3D2E"
+                android:text="Level 1"
                 android:textAllCaps="false"
+                android:textColor="#5C3D2E"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_highscore"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="@+id/btn_highscore"
@@ -100,16 +101,63 @@
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
                 android:fontFamily="@font/indie_flower"
                 android:text="1"
                 android:textAllCaps="false"
                 android:textColor="#5C3D2E"
-                android:layout_marginTop="-30dp"
                 android:textSize="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_highscore"
                 app:layout_constraintEnd_toEndOf="@+id/btn_highscore"
                 app:layout_constraintStart_toStartOf="@+id/btn_highscore"
                 app:layout_constraintTop_toBottomOf="@+id/levelText" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/medal"
+                android:layout_width="79dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintEnd_toStartOf="@+id/txttitle"
+                app:layout_constraintHorizontal_bias="0.554"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/medal"
+                app:lottie_repeatCount="10" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/medal2"
+                android:layout_width="79dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.357"
+                app:layout_constraintStart_toEndOf="@+id/txttitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/medal"
+                app:lottie_repeatCount="10" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/stars"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/star"
+                app:lottie_repeatCount="10" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

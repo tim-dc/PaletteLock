@@ -21,6 +21,8 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
+    SelectLevel selectLevel;
+
     private CanvasReel1 mCanvasReel1;
     private CanvasReel2 mCanvasReel2;
     private CanvasReel3 mCanvasReel3;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private int testCounter = 0;
     private int currentCount=0;
     private int time = 6000;
+    public int level;
 
     ImageView reelLock1;
     ImageView reelLock2;
@@ -59,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean setNewGoal = true;
     private boolean allMatching = false;
 
+    //public static final int GAME_LEVEL = 0;
+
     ScoreDatabase scoreDB;
     ScoreModel scoreModel = new ScoreModel();;
 
@@ -72,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        level = intent.getIntExtra(SelectLevel.GAME_LEVEL, 1);
+        System.out.println(level);
 
         scoreDB = new ScoreDatabase(this);
 
@@ -288,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent mIntent;
                 mIntent = new Intent(MainActivity.this, SelectLevel.class);
                 startActivity(mIntent);
+                timer.cancel();
                 finish();
             }
         });
@@ -310,12 +320,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showGameOver(){
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.game_over_popup);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_popup);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        TextView score = dialog.findViewById(R.id.txtScore);
+        dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
+
+        score.setText(String.valueOf(currentScore));
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
+
+            }
+        });
+
+        dialog.show();
+    }
+
 
     private class Metronome extends TimerTask {
 
 
         @Override
         public void run() {
+
 
             runOnUiThread(new Runnable() {
                 @Override
@@ -343,10 +377,11 @@ public class MainActivity extends AppCompatActivity {
                     {
                         System.out.println("END TIMER!");
                         scoreModel.setScore(currentScore);
-                        scoreModel.setLevel(1);
-                        addData(currentScore, 1);
+                        scoreModel.setLevel(level);
+                        System.out.println(level);
+                        addData(currentScore, level);
                         timer.cancel();
-                        return;
+                        showGameOver();
                     }
 
 

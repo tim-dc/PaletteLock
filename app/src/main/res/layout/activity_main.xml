@@ -55,7 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Start!"
-        android:textSize="20sp"
+        android:fontFamily="@font/indie_flower"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintTop_toTopOf="parent" />

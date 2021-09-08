@@ -27,6 +27,8 @@ import java.util.ArrayList;
 
 public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListItemClickListener {
 
+    public static final String GAME_LEVEL = "levelSelected";
+
     RecyclerView levelRecycler;
     RecyclerView.Adapter adapter;
     RecyclerView scoreRecycler;
@@ -37,7 +39,7 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
     RelativeLayout relativeLayout;
 
     int currentLevelScore = 1;
-    int clickLevel;
+
 
     //private ListView listView;
     ScoreDatabase scoreDB;
@@ -149,6 +151,7 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
             @Override
             public void onClick(View v) {
                 currentLevelScore--;
+                listScoreView();
                 //dialog.dismiss();
             }
         });
@@ -170,7 +173,7 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
 
         System.out.println(list);
 
-        if(list.size() > 0)
+        if(list.size() > 0 && currentLevelScore != 0)
         {
             score_level.setText(String.valueOf(list.get(0)));
             level.setText("Level " + currentLevelScore);
@@ -186,10 +189,11 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 list.add(data.getInt(2));
             }
 
+            currentLevelScore = 1;
+
             score_level.setText(String.valueOf(list.get(0)));
             level.setText("Level " + 1);
         }
-
 
 
         //ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
@@ -243,32 +247,39 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
     @Override
     public void onListClick(int clickedItemIndex) {
 
-
             Intent mIntent;
+
             switch (clickedItemIndex){
                 case 0: //first item in Recycler view
                     mIntent  = new Intent(SelectLevel.this, MainActivity.class);
-                    clickLevel = 1;
+                    mIntent.putExtra(GAME_LEVEL, 1);
+                    System.out.println("ha");
                     startActivity(mIntent);
                     break;
                 case 1: //second item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
-                    clickLevel = 2;
+                    mIntent.putExtra(GAME_LEVEL, 2);
+                    System.out.println("hatdog");
                     startActivity(mIntent);
                     break;
                 case 2: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
-                    clickLevel = 3;
+                    mIntent.putExtra(GAME_LEVEL, 3);
+
                     startActivity(mIntent);
                     break;
-                      case 3: //third item in Recycler view
+                case 3: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
-                    clickLevel = 4;
+                    mIntent.putExtra(GAME_LEVEL, 4);
+
+                          //clickLevel = 4;
                     startActivity(mIntent);
                     break;
                 case 4: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
-                    clickLevel = 5;
+                    mIntent.putExtra(GAME_LEVEL, 5);
+
+                    //clickLevel = 5;
                     startActivity(mIntent);
                     break;
 

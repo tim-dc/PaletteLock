@@ -84,9 +84,4 @@ public class ScoreDatabase extends SQLiteOpenHelper {
         return data;
     }
 
-    public boolean deleteTitle(int level)
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.delete(TABLE_SCORE, SCORE_LEVEL + "=" + level, null) > 0;
-    }
 }
