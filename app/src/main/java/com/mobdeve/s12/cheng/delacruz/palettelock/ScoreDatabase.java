@@ -74,12 +74,19 @@ public class ScoreDatabase extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getData()
+    public Cursor getData(int level)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_SCORE;
+        String query = "select *" + " from my_score" + " where score_level = " + level + " order by game_score desc";
+        //String query = "SELECT * FROM " + TABLE_SCORE;
         Cursor data = db.rawQuery(query, null);
 
         return data;
+    }
+
+    public boolean deleteTitle(int level)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.delete(TABLE_SCORE, SCORE_LEVEL + "=" + level, null) > 0;
     }
 }

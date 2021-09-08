@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/highscore_popup">
@@ -8,9 +9,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FAF3E0"
-
-        >
+        android:background="#FAF3E0">
 
         <ImageView
             android:id="@+id/btn_close"
@@ -23,48 +22,99 @@
             android:layout_marginRight="2dp"
             android:src="@drawable/ic_baseline_clear_24" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="251dp">
 
             <TextView
                 android:id="@+id/txttitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/indie_flower"
                 android:text="High Score"
                 android:textColor="#5C3D2E"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ScrollView
+
+            <FrameLayout
+                android:id="@+id/btn_highscore"
+                android:layout_width="206dp"
+                android:layout_height="132dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/score_border"
+                android:fontFamily="@font/indie_flower"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textAllCaps="false"
+                android:textColor="#5C3D2E"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txttitle" >
+
+
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="32dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="2dp"
+                android:background="#FAF3E0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_navigate_before_24" />
+
+            <TextView
+                android:id="@+id/levelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="70dp"
-                android:background="#faf8ef">
+                android:layout_marginTop="30dp"
+                android:text="Level 1"
+                android:textSize="20dp"
+                android:fontFamily="@font/indie_flower"
+                android:textColor="#5C3D2E"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/btn_highscore"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@+id/btn_highscore"
+                app:layout_constraintTop_toTopOf="@+id/btn_highscore" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FAF3E0"
-                    android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="32dp"
+                android:layout_height="65dp"
+                android:layout_marginEnd="4dp"
+                android:background="#FAF3E0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/scoreList"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="25dp"
-                        android:background="#FAF3E0"
-                        android:fontFamily="@font/indie_flower">
+            <TextView
+                android:id="@+id/scoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/indie_flower"
+                android:text="1"
+                android:textAllCaps="false"
+                android:textColor="#5C3D2E"
+                android:layout_marginTop="-30dp"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_highscore"
+                app:layout_constraintEnd_toEndOf="@+id/btn_highscore"
+                app:layout_constraintStart_toStartOf="@+id/btn_highscore"
+                app:layout_constraintTop_toBottomOf="@+id/levelText" />
 
-                    </androidx.recyclerview.widget.RecyclerView>
-                </LinearLayout>
-            </ScrollView>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
     </RelativeLayout>
+
 
 </RelativeLayout>
