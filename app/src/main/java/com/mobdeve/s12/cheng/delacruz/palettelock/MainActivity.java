@@ -176,8 +176,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(0),goal.get(0))){
 //                        System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
+
                     numReelsCorrect++;
                     mCanvasReel1.setMatchingStatus(true);
+
                 }
             }
         });
@@ -191,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(1),goal.get(1))){
 //                        System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
+
                     numReelsCorrect++;
                     mCanvasReel2.setMatchingStatus(true);
                 }
@@ -268,11 +271,46 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//    public void playCorrectLock(){
+//        if(player == null)
+//        {
+//            player = MediaPlayer.create(this, R.raw.correctLock);
+//
+//            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mp) {
+//                    stopPlayer();
+//                }
+//            });
+//        }
+//
+//        player.start();
+//    }
+
+//    public void playWrongLock(){
+//        if(player == null)
+//        {
+//            player = MediaPlayer.create(this, R.raw.wrongLock);
+//
+//            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mp) {
+//                    stopPlayer();
+//                }
+//            });
+//        }
+//
+//        player.start();
+//    }
+
+
     @Override
     protected void onStop() {
         super.onStop();
         stopPlayer();
     }
+
+
 
     private void setFirstGoalTrue(){
         setFirstGoal = true;
@@ -514,6 +552,8 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
                         allMatching = true;
+
+//                        playCorrectLock();
 
                         // Set New Goal
                         setNewGoalTrue();
