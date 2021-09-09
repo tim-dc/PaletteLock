@@ -548,24 +548,25 @@ public class MainActivity extends AppCompatActivity {
 
                     // Set Base Chances based on Measure Num
                     if(measureCounter == 1){
-                        baseChance = 30;
+                        baseChance = 20;
                     }else if (measureCounter == 3){
-                        baseChance = 32;
+                        baseChance = 23;
                     }else if (measureCounter == 5){
-                        baseChance = 34;
+                        baseChance = 26;
                     }else if (measureCounter == 7){
-                        baseChance = 36;
+                        baseChance = 29;
                     }else if (measureCounter == 9){
-                        baseChance = 38;
+                        baseChance = 32;
                     }else if (measureCounter == 11){
-                        baseChance = 40;
+                        baseChance = 35;
                     }else if (measureCounter == 13){
-                        baseChance = 41;
+                        baseChance = 38;
                     }else if (measureCounter > 14){
-                        baseChance = 42;
+                        baseChance = 41;
                     }
 
-                    System.out.println("Num Wheels Correct = " + numReelsCorrect + " baseChance = " +baseChance + " additionalChance = " + additionalChance);
+                    additionalChance =0;
+
                     // Additional Chances
                     switch (numReelsCorrect){
                         case 4: additionalChance += 3;
@@ -574,7 +575,7 @@ public class MainActivity extends AppCompatActivity {
                         case 1: additionalChance += 3;
                         default: break;
                     }
-
+                    System.out.println("Num Wheels Correct = " + numReelsCorrect + " baseChance = " + baseChance + " additionalChance = " + additionalChance);
                     // Max Chance = 47 + 18 = 65%
 
                     // If prompted to change goal palette
