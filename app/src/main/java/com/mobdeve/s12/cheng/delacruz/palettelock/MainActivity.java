@@ -76,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
     public int blackSwanDelay;
     public int blackSwanDelay2;
 
+    // For Chances
+
+    public int baseChance;
+    public int numReelsCorrect = 0;
+    public int measureCounter = 1;
+    public int additionalChance;
+    public int totalChance;
+    public int goalIndex;
+
 //    private TextView counterText = (TextView)findViewById(R.id.counter);
 
     @Override
@@ -165,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(0),goal.get(0))){
 //                        System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
+                    numReelsCorrect++;
                     mCanvasReel1.setMatchingStatus(true);
                 }
             }
@@ -179,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(1),goal.get(1))){
 //                        System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
+                    numReelsCorrect++;
                     mCanvasReel2.setMatchingStatus(true);
                 }
 
@@ -193,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(2),goal.get(2))){
 //                        System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
+                    numReelsCorrect++;
                     mCanvasReel3.setMatchingStatus(true);
                 }
 
@@ -207,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(3),goal.get(3))){
 //                        System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
+                    numReelsCorrect++;
                     mCanvasReel4.setMatchingStatus(true);
                 }
 
@@ -221,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(4),goal.get(4))){
 //                        System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
+                    numReelsCorrect++;
                     mCanvasReel5.setMatchingStatus(true);
                 }
             }
@@ -296,11 +310,11 @@ public class MainActivity extends AppCompatActivity {
             mCanvasReel5.setLockStatus(false);
 
         }else{
-            System.out.println("reel1: " + reel1 + " match1: " + match1 );
-            System.out.println("reel2: " + reel2 + " match2: " + match2 );
-            System.out.println("reel3: " + reel3 + " match3: " + match3 );
-            System.out.println("reel4: " + reel4 + " match4: " + match4 );
-            System.out.println("reel5: " + reel5 + " match5: " + match5 );
+//            System.out.println("reel1: " + reel1 + " match1: " + match1 );
+//            System.out.println("reel2: " + reel2 + " match2: " + match2 );
+//            System.out.println("reel3: " + reel3 + " match3: " + match3 );
+//            System.out.println("reel4: " + reel4 + " match4: " + match4 );
+//            System.out.println("reel5: " + reel5 + " match5: " + match5 );
             if(reel1 && !match1){
                 reelLock1.setVisibility(View.INVISIBLE);
                 mCanvasReel1.setLockStatus(false);
@@ -360,6 +374,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private boolean produceRightColor(int totalChance){
+
+        Random rand = new Random();
+
+        int number = rand.nextInt(100);
+
+
+
+        // TEST --
+        // number = 43
+        // totalChance = 50/100
+        // if number < total Chance --> because totalChance 50% of numbers etc etc encapsualtes 0-50
+
+        if(number <= totalChance){
+//            System.out.println("RANDOM NUMBER = " + number + " WITH A CHANCE OF = " + totalChance + "% -- SUCCESS");
+            return true;
+        }else {
+//            System.out.println("RANDOM NUMBER = " + number + " WITH A CHANCE OF = " + totalChance + "% -- FAILED");
+            return false;
+        }
+    }
+
     public void addData(int score, int level)
     {
         boolean insertData = scoreDB.addData(score, level);
@@ -413,7 +449,8 @@ public class MainActivity extends AppCompatActivity {
 
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
-                    int goalIndex;
+                    int randomColor = 0;
+
 
                     /*long now = System.currentTimeMillis(); // current time in ms
                     time -= now; // adjust remaining time
@@ -442,26 +479,31 @@ public class MainActivity extends AppCompatActivity {
 
                     // Initialize Goal
                     if(setFirstGoal){
+                        // Populate array with blank values
                         for(int i=0;i<5;i++)
                         {
                             currColor.add(" ");
                         }
-                        goal.add(pReel1.get(randomNum));
-                        goal.add(pReel2.get(randomNum));
-                        goal.add(pReel3.get(randomNum));
-                        goal.add(pReel4.get(randomNum));
-                        goal.add(pReel5.get(randomNum));
 
-                        // Change to neutral Colors (blacksmoke/gunsmoke)
-                        mCanvasReel1.changeGoalColor(pReel1.get(randomNum));
-                        mCanvasReel2.changeGoalColor(pReel2.get(randomNum));
-                        mCanvasReel3.changeGoalColor(pReel3.get(randomNum));
-                        mCanvasReel4.changeGoalColor(pReel4.get(randomNum));
-                        mCanvasReel5.changeGoalColor(pReel5.get(randomNum));
+                        // randomNum = index of goal colors
+                        goalIndex = randomNum;
+                        goal.add(pReel1.get(goalIndex));
+                        goal.add(pReel2.get(goalIndex));
+                        goal.add(pReel3.get(goalIndex));
+                        goal.add(pReel4.get(goalIndex));
+                        goal.add(pReel5.get(goalIndex));
+
+                        // Changes the goal circles to the goalIndex color
+                        mCanvasReel1.changeGoalColor(pReel1.get(goalIndex));
+                        mCanvasReel2.changeGoalColor(pReel2.get(goalIndex));
+                        mCanvasReel3.changeGoalColor(pReel3.get(goalIndex));
+                        mCanvasReel4.changeGoalColor(pReel4.get(goalIndex));
+                        mCanvasReel5.changeGoalColor(pReel5.get(goalIndex));
+
+                        // Sentinel Values
                         setFirstGoalFalse();
                         setNewGoalFalse();
                     }
-
 
 
                     // If all reels are correct
@@ -469,6 +511,7 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
                         allMatching = true;
+
                         // Set New Goal
                         setNewGoalTrue();
                         mCanvasReel1.setMatchingStatus(false);
@@ -482,46 +525,87 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel4.setLockStatus(false);
                         mCanvasReel5.setLockStatus(false);
 
+                        // Scoring System
                         currentScore++;
                         score.setText(String.valueOf(currentScore));
-
                     }
 
                     // Unlocking all reels
                     if(currentCount == 4) {
-                        // Counting  from 1
+
+                        // Measure Counter
+                        measureCounter++;
+
+                        // Counting from 1 (beats in a measure)
                         currentCount = 1;
+
                         // Check if all matching / some are matching
                         unlockReels(mCanvasReel1.getLockStatus(),mCanvasReel2.getLockStatus(),mCanvasReel3.getLockStatus(),mCanvasReel4.getLockStatus(),mCanvasReel5.getLockStatus(),
                                     mCanvasReel1.isMatchingStatus(),mCanvasReel2.isMatchingStatus(),mCanvasReel3.isMatchingStatus(),mCanvasReel4.isMatchingStatus(),mCanvasReel5.isMatchingStatus(), allMatching);
                     }else currentCount++;
 
-                    // If All Matching --> Set a new Goal
+
+
+                    // Set Base Chances based on Measure Num
+                    if(measureCounter == 1){
+                        baseChance = 30;
+                    }else if (measureCounter == 3){
+                        baseChance = 32;
+                    }else if (measureCounter == 5){
+                        baseChance = 34;
+                    }else if (measureCounter == 7){
+                        baseChance = 36;
+                    }else if (measureCounter == 9){
+                        baseChance = 38;
+                    }else if (measureCounter == 11){
+                        baseChance = 40;
+                    }else if (measureCounter == 13){
+                        baseChance = 41;
+                    }else if (measureCounter > 14){
+                        baseChance = 42;
+                    }
+
+                    System.out.println("Num Wheels Correct = " + numReelsCorrect + " baseChance = " +baseChance + " additionalChance = " + additionalChance);
+                    // Additional Chances
+                    switch (numReelsCorrect){
+                        case 4: additionalChance += 3;
+                        case 3: additionalChance += 3;
+                        case 2: additionalChance += 3;
+                        case 1: additionalChance += 3;
+                        default: break;
+                    }
+
+                    // Max Chance = 47 + 18 = 65%
+
+                    // If prompted to change goal palette
                     if(setNewGoal){
 
-                        // Reset
+                        // Reset lock visibility
                         reelLock1.setVisibility(View.INVISIBLE);
                         reelLock2.setVisibility(View.INVISIBLE);
                         reelLock3.setVisibility(View.INVISIBLE);
                         reelLock4.setVisibility(View.INVISIBLE);
                         reelLock5.setVisibility(View.INVISIBLE);
 
+                        // Get a random color palette for GOAL and STORE it
                         goal.set(0,pReel1.get(randomNum));
                         goal.set(1,pReel2.get(randomNum));
                         goal.set(2,pReel3.get(randomNum));
                         goal.set(3,pReel4.get(randomNum));
                         goal.set(4,pReel5.get(randomNum));
+
+                        // Change the goal circles to the given color
                         mCanvasReel1.changeGoalColor(pReel1.get(randomNum));
                         mCanvasReel2.changeGoalColor(pReel2.get(randomNum));
                         mCanvasReel3.changeGoalColor(pReel3.get(randomNum));
                         mCanvasReel4.changeGoalColor(pReel4.get(randomNum));
                         mCanvasReel5.changeGoalColor(pReel5.get(randomNum));
 
+
                         // Swap Colors
 
-                        // Put Chances here
-
-
+                        // Reset Chances to base chances
+                        additionalChance = 0;
 
                         // Reels 1 - 5 random num gen
                         randomNum = rand.nextInt(upperbound);
@@ -540,28 +624,76 @@ public class MainActivity extends AppCompatActivity {
                         randomNum = rand.nextInt(upperbound);
                         currColor.set(4,pReel5.get(randomNum));
                         mCanvasReel5.swapColor(pReel5.get(randomNum), mCanvasReel5.isLocked());
-
 
                         setNewGoalFalse();
                         allMatching = false;
                     }else{
-                        // Swap Colors
-                        // Reels 1 - 5 random num gen
-                        randomNum = rand.nextInt(upperbound);
-                        currColor.set(0,pReel1.get(randomNum));
-                        mCanvasReel1.swapColor(pReel1.get(randomNum), mCanvasReel1.isLocked());
-                        randomNum = rand.nextInt(upperbound);
-                        currColor.set(1,pReel2.get(randomNum));
-                        mCanvasReel2.swapColor(pReel2.get(randomNum), mCanvasReel2.isLocked());
-                        randomNum = rand.nextInt(upperbound);
-                        currColor.set(2,pReel3.get(randomNum));
-                        mCanvasReel3.swapColor(pReel3.get(randomNum), mCanvasReel3.isLocked());
-                        randomNum = rand.nextInt(upperbound);
-                        currColor.set(3,pReel4.get(randomNum));
-                        mCanvasReel4.swapColor(pReel4.get(randomNum), mCanvasReel4.isLocked());
-                        randomNum = rand.nextInt(upperbound);
-                        currColor.set(4,pReel5.get(randomNum));
-                        mCanvasReel5.swapColor(pReel5.get(randomNum), mCanvasReel5.isLocked());
+
+                        // REGULAR SWAPPING
+
+                        // Put Chances here
+                        totalChance = baseChance + additionalChance;
+
+                        // Pass totalChance to produceRightColor()
+
+                        // Swap Colors if number ends up within 0 to totalChance range
+
+                        // Reel 1
+                        // Random Num Gen 0-100 for chance
+                        if(produceRightColor(totalChance)){
+                            currColor.set(0,pReel1.get(goalIndex));
+                            mCanvasReel1.swapColor(pReel1.get(goalIndex), mCanvasReel1.isLocked());
+                        }else {
+                            // Any other color
+                            randomColor = rand.nextInt(upperbound);
+                            currColor.set(0,pReel1.get(randomColor));
+                            mCanvasReel1.swapColor(pReel1.get(randomColor), mCanvasReel1.isLocked());
+                        }
+
+                        // Reel 2
+                        if(produceRightColor(totalChance)){
+                            currColor.set(1,pReel2.get(goalIndex));
+                            mCanvasReel2.swapColor(pReel2.get(goalIndex), mCanvasReel2.isLocked());
+                        }else {
+                            // Any other color
+                            randomColor = rand.nextInt(upperbound);
+                            currColor.set(1,pReel2.get(randomColor));
+                            mCanvasReel2.swapColor(pReel2.get(randomColor), mCanvasReel2.isLocked());
+                        }
+
+                        // Reel 3
+                        if(produceRightColor(totalChance)){
+                            currColor.set(2,pReel3.get(goalIndex));
+                            mCanvasReel3.swapColor(pReel3.get(goalIndex), mCanvasReel3.isLocked());
+                        }else {
+                            // Any other color
+                            randomColor = rand.nextInt(upperbound);
+                            currColor.set(2,pReel3.get(randomColor));
+                            mCanvasReel3.swapColor(pReel3.get(randomColor), mCanvasReel3.isLocked());
+                        }
+
+                        // Reel 4
+                        if(produceRightColor(totalChance)){
+                            currColor.set(3,pReel4.get(goalIndex));
+                            mCanvasReel4.swapColor(pReel4.get(goalIndex), mCanvasReel4.isLocked());
+                        }else {
+                            // Any other color
+                            randomColor = rand.nextInt(upperbound);
+                            currColor.set(3,pReel4.get(randomColor));
+                            mCanvasReel4.swapColor(pReel4.get(randomColor), mCanvasReel4.isLocked());
+                        }
+
+                        // Reel 5
+                        if(produceRightColor(totalChance)){
+                            currColor.set(4,pReel5.get(goalIndex));
+                            mCanvasReel5.swapColor(pReel5.get(goalIndex), mCanvasReel5.isLocked());
+                        }else {
+                            // Any other color
+                            randomColor = rand.nextInt(upperbound);
+                            currColor.set(4,pReel5.get(randomColor));
+                            mCanvasReel5.swapColor(pReel5.get(randomColor), mCanvasReel5.isLocked());
+                        }
+
                     }
 
 
