@@ -102,16 +102,16 @@ public class MainActivity extends AppCompatActivity {
         //blackSwan1 = 1200;
         //blackSwan2 = 2400;
 
-        blackSwan1 = 937;
-        blackSwan2 = 1874;
-        blackSwan3 = 469;
+        blackSwan1 = 937; // 64bpm
+        blackSwan2 = 1874; // 32bpm
+        blackSwan3 = 469; // 128 bpm
 
         blackSwanDelay = 3400;
 
         // period is key
         timer.schedule(metronome,
                 blackSwanDelay,
-                blackSwan3);
+                blackSwan1);
 
         counter = findViewById(R.id.counter);
         score = findViewById(R.id.score);
