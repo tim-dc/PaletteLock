@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         reelLock4 = (ImageView)findViewById(R.id.lock4);
         reelLock5 = (ImageView)findViewById(R.id.lock5);
 
-        // Color Palletes (Color1,2,3,4,5) --->
+        // Color Palletes (Color 1,2,3,4,5) --->
 
         // 8ecae6,219ebc,023047,ffb703,fb8500
         pReel1.add("#8ecae6"); pReel2.add("#219ebc"); pReel3.add("#023047"); pReel4.add("#ffb703"); pReel5.add("#fb8500");
@@ -413,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
 
                     int upperbound = pReel1.size();
                     int randomNum = rand.nextInt(upperbound);
+                    int goalIndex;
 
                     /*long now = System.currentTimeMillis(); // current time in ms
                     time -= now; // adjust remaining time
@@ -451,6 +452,7 @@ public class MainActivity extends AppCompatActivity {
                         goal.add(pReel4.get(randomNum));
                         goal.add(pReel5.get(randomNum));
 
+                        // Change to neutral Colors (blacksmoke/gunsmoke)
                         mCanvasReel1.changeGoalColor(pReel1.get(randomNum));
                         mCanvasReel2.changeGoalColor(pReel2.get(randomNum));
                         mCanvasReel3.changeGoalColor(pReel3.get(randomNum));
@@ -462,6 +464,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+                    // If all reels are correct
                     if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
@@ -482,17 +485,7 @@ public class MainActivity extends AppCompatActivity {
                         currentScore++;
                         score.setText(String.valueOf(currentScore));
 
-
                     }
-
-                    // Test only
-                    testCounter++;
-                    System.out.println("Test Counter = " + testCounter);
-
-//                    // Test Only
-//                    if(testCounter % 10 == 0){
-//                        setNewGoalTrue();
-//                    }
 
                     // Unlocking all reels
                     if(currentCount == 4) {
@@ -525,8 +518,14 @@ public class MainActivity extends AppCompatActivity {
                         mCanvasReel5.changeGoalColor(pReel5.get(randomNum));
 
                         // Swap Colors
+
+                        // Put Chances here
+
+
+
                         // Reels 1 - 5 random num gen
                         randomNum = rand.nextInt(upperbound);
+
                         currColor.set(0,pReel1.get(randomNum));
                         mCanvasReel1.swapColor(pReel1.get(randomNum), mCanvasReel1.isLocked());
                         randomNum = rand.nextInt(upperbound);
