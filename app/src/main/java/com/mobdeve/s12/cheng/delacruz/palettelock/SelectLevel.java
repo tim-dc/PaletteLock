@@ -218,7 +218,6 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
         location.add(new Helper("Level 4"));
         location.add(new Helper("Level 5"));
         location.add(new Helper("Level 6"));
-        location.add(new Helper("Level 7"));
 
         adapter = new AdapterLevel(location,this);
         levelRecycler.setAdapter(adapter);
@@ -257,6 +256,13 @@ public class SelectLevel extends AppCompatActivity implements AdapterLevel.ListI
                 case 4: //third item in Recycler view
                     mIntent = new Intent(SelectLevel.this, MainActivity.class);
                     mIntent.putExtra(GAME_LEVEL, 5);
+
+                    //clickLevel = 5;
+                    startActivity(mIntent);
+                    break;
+                case 5: //third item in Recycler view
+                    mIntent = new Intent(SelectLevel.this, MainActivity.class);
+                    mIntent.putExtra(GAME_LEVEL, 6);
 
                     //clickLevel = 5;
                     startActivity(mIntent);

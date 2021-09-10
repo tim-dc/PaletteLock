@@ -6,16 +6,13 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -77,12 +74,17 @@ public class MainActivity extends AppCompatActivity {
     public int blackSwanDelay;
 
 
-    public int holdMeDown1;
-    public int holdMeDown2;
-    public int holdMeDown3;
-    public int holdMeDownDelay;
+    public int superlatives1;
+    public int superlatives2;
+    public int superlatives3;
+    public int superlativesDelay;
 
-    public int blackSwanDelay2;
+    public int architect1;
+    public int architect2;
+    public int architect3;
+    public int architectDelay;
+
+    public int length;
 
     // For Chances
 
@@ -117,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         // based on BPM
 
 
-
         play();
 
         // FOR BLACK SWAN
@@ -131,15 +132,25 @@ public class MainActivity extends AppCompatActivity {
         blackSwanDelay = 3400;
 
         // FOR HOLD ME DOWN
-        holdMeDown1 = 1860; // 32 bpm
-        holdMeDown2 = 930; // 63 bpm
-        holdMeDown3 = 465; // 130 bpm
+        superlatives1 = 1860; // 32 bpm
+        superlatives2 = 930; // 63 bpm
+        superlatives3 = 465; // 130 bpm
 
-        holdMeDownDelay = 5000;
+        superlativesDelay = 5000;
+
+        // FOR ARCHITECT
+        // temporary values
+        architect1 = 1800;
+        architect2 = 900;
+        architect3 = 460;
+
+        architectDelay = 4000;
 
         // period is key
+        // higher level, higher bpm, lower period value
         if(level == 1)
         {
+            length = 80;
             timer.schedule(metronome,
                     blackSwanDelay,
                     blackSwan2);
@@ -147,11 +158,48 @@ public class MainActivity extends AppCompatActivity {
 
         if(level == 2)
         {
+            length = 80;
+
             timer.schedule(metronome,
-                    holdMeDownDelay,
-                    holdMeDown1);
+                    superlativesDelay,
+                    superlatives2);
+        }
+        if(level == 3)
+        {
+            length = 120;
+
+            timer.schedule(metronome,
+                    architectDelay,
+                    architect2);
         }
 
+        if(level == 4)
+        {
+            length = 120;
+
+            timer.schedule(metronome,
+                    blackSwanDelay,
+                    blackSwan3);
+        }
+
+
+        if(level == 5)
+        {
+            length = 120;
+
+            timer.schedule(metronome,
+                    superlativesDelay,
+                    superlatives3);
+        }
+
+        if(level == 6)
+        {
+            length = 120;
+
+            timer.schedule(metronome,
+                    architectDelay,
+                    architect3);
+        }
 
         counter = findViewById(R.id.counter);
         score = findViewById(R.id.score);
@@ -347,15 +395,21 @@ public class MainActivity extends AppCompatActivity {
     public void play(){
         if(player == null)
         {
-            if(level == 1)
+            if(level == 1 || level == 4)
             {
                 player = MediaPlayer.create(this, R.raw.black_swan);
             }
 
-            if(level == 2)
+            if(level == 2 || level == 5)
             {
-                player = MediaPlayer.create(this, R.raw.hold_me_down);
+                player = MediaPlayer.create(this, R.raw.superlatives);
             }
+
+            if(level == 3 || level == 6)
+            {
+                player = MediaPlayer.create(this, R.raw.architect);
+            }
+
 
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -610,7 +664,7 @@ public class MainActivity extends AppCompatActivity {
 
                     timeCounter++;
 
-                    if (timeCounter >= 120) // change the 30 to the length of music
+                    if (timeCounter >= length) // change the 30 to the length of music
                     {
                         System.out.println("END TIMER!");
                         scoreModel.setScore(currentScore);
