@@ -67,14 +67,21 @@ public class MainActivity extends AppCompatActivity {
 
     ScoreDatabase scoreDB;
     ScoreModel scoreModel = new ScoreModel();;
+    MediaPlayer palette_lock;
 
     MediaPlayer player;
 
     public int blackSwan1;
     public int blackSwan2;
     public int blackSwan3;
-
     public int blackSwanDelay;
+
+
+    public int holdMeDown1;
+    public int holdMeDown2;
+    public int holdMeDown3;
+    public int holdMeDownDelay;
+
     public int blackSwanDelay2;
 
     // For Chances
@@ -113,21 +120,38 @@ public class MainActivity extends AppCompatActivity {
 
         play();
 
+        // FOR BLACK SWAN
+
         //blackSwan1 = 1200;
         //blackSwan2 = 2400;
-
-        blackSwan1 = 937; // 64bpm
-        blackSwan2 = 1874; // 32bpm
+        blackSwan1 = 1874; // 32bpm
+        blackSwan2 = 937; // 64bpm
         blackSwan3 = 469; // 128 bpm
 
         blackSwanDelay = 3400;
 
+        // FOR HOLD ME DOWN
+        holdMeDown1 = 1846; // 32 bpm
+        holdMeDown2 = 923; // 65 bpm
+        holdMeDown3 = 462; // 130 bpm
 
+        holdMeDownDelay = 5000;
 
         // period is key
-        timer.schedule(metronome,
-                blackSwanDelay,
-                blackSwan1);
+        if(level == 1)
+        {
+            timer.schedule(metronome,
+                    blackSwanDelay,
+                    blackSwan2);
+        }
+
+        if(level == 2)
+        {
+            timer.schedule(metronome,
+                    holdMeDownDelay,
+                    holdMeDown2);
+        }
+
 
         counter = findViewById(R.id.counter);
         score = findViewById(R.id.score);
@@ -162,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
         MediaPlayer correct_lock = MediaPlayer.create(this, R.raw.correctlock);
         MediaPlayer wrong_lock = MediaPlayer.create(this, R.raw.wronglock);
+        palette_lock = MediaPlayer.create(this, R.raw.palettelock);
 
 
         // Home Button
@@ -322,7 +347,15 @@ public class MainActivity extends AppCompatActivity {
     public void play(){
         if(player == null)
         {
-            player = MediaPlayer.create(this, R.raw.black_swan);
+            if(level == 1)
+            {
+                player = MediaPlayer.create(this, R.raw.black_swan);
+            }
+
+            if(level == 2)
+            {
+                player = MediaPlayer.create(this, R.raw.hold_me_down);
+            }
 
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -577,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
 
                     timeCounter++;
 
-                    if (timeCounter >= 60) // change the 30 to the length of music
+                    if (timeCounter >= 120) // change the 30 to the length of music
                     {
                         System.out.println("END TIMER!");
                         scoreModel.setScore(currentScore);
@@ -623,6 +656,8 @@ public class MainActivity extends AppCompatActivity {
                     if(mCanvasReel1.isMatchingStatus() && mCanvasReel2.isMatchingStatus() && mCanvasReel3.isMatchingStatus() &&
                         mCanvasReel4.isMatchingStatus() && mCanvasReel5.isMatchingStatus())
                     {
+
+                        palette_lock.start();
                         allMatching = true;
 
 //                        playCorrectLock();
@@ -666,9 +701,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else
                     {
-
-
-
                         currentCount++;
                     }
 
