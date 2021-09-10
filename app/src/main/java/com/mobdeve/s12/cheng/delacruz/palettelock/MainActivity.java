@@ -131,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
         blackSwanDelay = 3400;
 
         // FOR HOLD ME DOWN
-        holdMeDown1 = 1846; // 32 bpm
-        holdMeDown2 = 923; // 65 bpm
-        holdMeDown3 = 462; // 130 bpm
+        holdMeDown1 = 1860; // 32 bpm
+        holdMeDown2 = 930; // 63 bpm
+        holdMeDown3 = 465; // 130 bpm
 
         holdMeDownDelay = 5000;
 
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         {
             timer.schedule(metronome,
                     holdMeDownDelay,
-                    holdMeDown2);
+                    holdMeDown1);
         }
 
 
