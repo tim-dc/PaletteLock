@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         Metronome metronome = new Metronome();
         // based on BPM
 
+
+
         play();
 
         //blackSwan1 = 1200;
@@ -118,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         blackSwan3 = 469; // 128 bpm
 
         blackSwanDelay = 3400;
+
+
 
         // period is key
         timer.schedule(metronome,
@@ -155,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
         // 6f1d1b,bb9457,432818,99582a,ffe6a7
         pReel1.add("#6f1d1b"); pReel2.add("#bb9457"); pReel3.add("#432818"); pReel4.add("#99582a"); pReel5.add("#ffe6a7");
 
-
+        MediaPlayer correct_lock = MediaPlayer.create(this, R.raw.correctlock);
+        MediaPlayer wrong_lock = MediaPlayer.create(this, R.raw.wronglock);
 
 
         // Home Button
@@ -178,13 +184,19 @@ public class MainActivity extends AppCompatActivity {
 //                        System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
                     currentScore += 50;
                     score.setText(String.valueOf(currentScore));
+                    correct_lock.start();
                     numReelsCorrect++;
                     mCanvasReel1.setMatchingStatus(true);
 
                 }
                 else
                 {
-                    currentScore -= 15;
+                    wrong_lock.start();
+
+                    if(currentScore > 0)
+                    {
+                        currentScore -= 15;
+                    }
                     score.setText(String.valueOf(currentScore));
                 }
             }
@@ -199,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(1),goal.get(1))){
 //                        System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
+                    correct_lock.start();
                     currentScore += 50;
                     score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
@@ -206,7 +219,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    currentScore -= 15;
+                    wrong_lock.start();
+
+                    if(currentScore > 0)
+                    {
+                        currentScore -= 15;
+                    }
                     score.setText(String.valueOf(currentScore));
                 }
 
@@ -221,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(2),goal.get(2))){
 //                        System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
+                    correct_lock.start();
                     currentScore += 50;
                     score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
@@ -228,7 +247,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    currentScore -= 15;
+                    wrong_lock.start();
+
+                    if(currentScore > 0)
+                    {
+                        currentScore -= 15;
+                    }
                     score.setText(String.valueOf(currentScore));
                 }
 
@@ -243,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(3),goal.get(3))){
 //                        System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
+                    correct_lock.start();
                     currentScore += 50;
                     score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
@@ -250,7 +275,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    currentScore -= 15;
+                    wrong_lock.start();
+
+                    if(currentScore > 0)
+                    {
+                        currentScore -= 15;
+                    }
                     score.setText(String.valueOf(currentScore));
                 }
 
@@ -265,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(4),goal.get(4))){
 //                        System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
+                    correct_lock.start();
                     currentScore += 50;
                     score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
@@ -272,14 +303,22 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    currentScore -= 15;
+                    wrong_lock.start();
+
+                    if(currentScore > 0)
+                    {
+                        currentScore -= 15;
+                    }
                     score.setText(String.valueOf(currentScore));
                 }
             }
         });
 
     }
+    @Override
+    public void onBackPressed() {
 
+    }
     public void play(){
         if(player == null)
         {
