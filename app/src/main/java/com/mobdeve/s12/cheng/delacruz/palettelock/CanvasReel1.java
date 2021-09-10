@@ -98,6 +98,7 @@ public class CanvasReel1 extends View {
     }
 
     public boolean isMatchingStatus(){
+
         return matchingStatus;
     }
 

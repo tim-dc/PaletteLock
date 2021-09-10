@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     Timer timer;
 
-    private int currentScore = 0;
+    public int currentScore = 0;
 
     private boolean setFirstGoal = true;
     private boolean setNewGoal = true;
@@ -176,10 +176,16 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(0),goal.get(0))){
 //                        System.out.println("(1)CurrColor = " + currColor.get(0) + " Goal: " + goal.get(0));
-
+                    currentScore += 50;
+                    score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
                     mCanvasReel1.setMatchingStatus(true);
 
+                }
+                else
+                {
+                    currentScore -= 15;
+                    score.setText(String.valueOf(currentScore));
                 }
             }
         });
@@ -193,9 +199,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(1),goal.get(1))){
 //                        System.out.println("(2)CurrColor = " + currColor.get(1) + " Goal: " + goal.get(1));
-
+                    currentScore += 50;
+                    score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
                     mCanvasReel2.setMatchingStatus(true);
+                }
+                else
+                {
+                    currentScore -= 15;
+                    score.setText(String.valueOf(currentScore));
                 }
 
             }
@@ -209,8 +221,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(2),goal.get(2))){
 //                        System.out.println("(3)CurrColor = " + currColor.get(2) + " Goal: " + goal.get(2));
+                    currentScore += 50;
+                    score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
                     mCanvasReel3.setMatchingStatus(true);
+                }
+                else
+                {
+                    currentScore -= 15;
+                    score.setText(String.valueOf(currentScore));
                 }
 
             }
@@ -224,8 +243,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(3),goal.get(3))){
 //                        System.out.println("(4)CurrColor = " + currColor.get(3) + " Goal: " + goal.get(3));
+                    currentScore += 50;
+                    score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
                     mCanvasReel4.setMatchingStatus(true);
+                }
+                else
+                {
+                    currentScore -= 15;
+                    score.setText(String.valueOf(currentScore));
                 }
 
             }
@@ -239,8 +265,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isMatching(currColor.get(4),goal.get(4))){
 //                        System.out.println("(5)CurrColor = " + currColor.get(4) + " Goal: " + goal.get(4));
+                    currentScore += 50;
+                    score.setText(String.valueOf(currentScore));
                     numReelsCorrect++;
                     mCanvasReel5.setMatchingStatus(true);
+                }
+                else
+                {
+                    currentScore -= 15;
+                    score.setText(String.valueOf(currentScore));
                 }
             }
         });
@@ -512,8 +545,8 @@ public class MainActivity extends AppCompatActivity {
                         scoreModel.setLevel(level);
                         System.out.println(level);
                         addData(currentScore, level);
-                        timer.cancel();
                         showGameOver();
+                        timer.cancel();
                     }
 
 
@@ -575,7 +608,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // Scoring System
-                        currentScore++;
+                        currentScore += 300;
                         score.setText(String.valueOf(currentScore));
                     }
 
@@ -591,7 +624,14 @@ public class MainActivity extends AppCompatActivity {
                         // Check if all matching / some are matching
                         unlockReels(mCanvasReel1.getLockStatus(),mCanvasReel2.getLockStatus(),mCanvasReel3.getLockStatus(),mCanvasReel4.getLockStatus(),mCanvasReel5.getLockStatus(),
                                     mCanvasReel1.isMatchingStatus(),mCanvasReel2.isMatchingStatus(),mCanvasReel3.isMatchingStatus(),mCanvasReel4.isMatchingStatus(),mCanvasReel5.isMatchingStatus(), allMatching);
-                    }else currentCount++;
+                    }
+                    else
+                    {
+
+
+
+                        currentCount++;
+                    }
 
 
 
