@@ -151,7 +151,12 @@ public class MainActivity extends AppCompatActivity {
         // higher level, higher bpm, lower period value
         if(level == 1)
         {
-            length = 80;
+            int secondsDeficit;
+            int desiredLength = 94; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) blackSwan2 / 1000));
+
+            length = desiredLength + secondsDeficit;
             timer.schedule(metronome,
                     blackSwanDelay,
                     blackSwan2);
@@ -159,7 +164,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(level == 2)
         {
-            length = 80;
+            int secondsDeficit;
+            int desiredLength = 128; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) superlatives2 / 1000));
+
+            length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     superlativesDelay,
@@ -167,7 +177,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if(level == 3)
         {
-            length = 120;
+            int secondsDeficit;
+            int desiredLength = 99; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) architect2 / 1000));
+
+            length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     architectDelay,
@@ -176,7 +191,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(level == 4)
         {
-            length = 120;
+            int secondsDeficit;
+            int desiredLength = 94; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) blackSwan3 / 1000));
+
+            length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     blackSwanDelay,
@@ -186,7 +206,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(level == 5)
         {
-            length = 120;
+            int secondsDeficit;
+            int desiredLength = 128; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) superlatives2 / 1000));
+
+            length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     superlativesDelay,
@@ -195,7 +220,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(level == 6)
         {
-            length = 120;
+            int secondsDeficit;
+            int desiredLength = 99; // in seconds
+
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) architect3 / 1000));
+
+            length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     architectDelay,
@@ -673,6 +703,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(level);
                         addData(currentScore, level);
                         showGameOver();
+                        stopPlayer();
                         timer.cancel();
                     }
 
