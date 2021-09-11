@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/gl_reel12"
         app:layout_constraintStart_toStartOf="@+id/gl_left"
@@ -25,6 +26,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/gl_reel23"
         app:layout_constraintStart_toStartOf="@+id/gl_reel12"
@@ -37,6 +39,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/gl_reel34"
         app:layout_constraintStart_toStartOf="@+id/gl_reel23"
@@ -49,6 +52,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/gl_reel45"
         app:layout_constraintStart_toStartOf="@+id/gl_reel34"
@@ -61,6 +65,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintStart_toStartOf="@+id/gl_reel45"
@@ -70,14 +75,13 @@
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Start!"
         android:fontFamily="@font/indie_flower"
+        android:text="Start!"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/gl_main_top" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_left"
@@ -177,7 +181,7 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/indie_flower"
         android:text="0"
         android:textColor="#5C3D2E"
@@ -191,7 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/indie_flower"
         android:text="Score: "
         android:textColor="#5C3D2E"
@@ -241,6 +245,53 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.78" />
+
+    <TextView
+        android:id="@+id/timeRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Left"
+        app:layout_constraintEnd_toStartOf="@+id/gl_reel45"
+        app:layout_constraintStart_toStartOf="@+id/gl_reel45"
+        app:layout_constraintTop_toTopOf="@+id/gl_main_top" />
+
+    <TextView
+        android:id="@+id/mins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="4dp"
+        android:text="00"
+        app:layout_constraintEnd_toStartOf="@+id/timeDivider"
+        app:layout_constraintTop_toBottomOf="@+id/timeRemaining" />
+
+    <TextView
+        android:id="@+id/seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="7dp"
+        android:text="40"
+        app:layout_constraintStart_toEndOf="@+id/timeDivider"
+        app:layout_constraintTop_toBottomOf="@+id/timeRemaining" />
+
+    <TextView
+        android:id="@+id/timeDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text=":"
+        app:layout_constraintEnd_toStartOf="@+id/gl_reel45"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/gl_reel45"
+        app:layout_constraintTop_toBottomOf="@+id/timeRemaining" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
