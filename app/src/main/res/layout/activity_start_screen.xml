@@ -11,30 +11,30 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_design"
-        android:layout_width="745dp"
-        android:layout_height="353dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/bottom1"
         app:lottie_repeatCount="5" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_design_top"
-        android:layout_width="745dp"
-        android:layout_height="353dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="16dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/top1"
         app:lottie_repeatCount="5" />
@@ -44,26 +44,34 @@
         android:layout_width="145dp"
         android:layout_height="92dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="96dp"
+        android:layout_marginTop="20dp"
         android:scaleX="2"
         android:scaleY="2"
-        app:layout_constraintBottom_toBottomOf="@+id/title_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gl_midpoint"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/play2" />
 
     <ImageView
         android:id="@+id/title_one"
-        android:layout_width="468dp"
-        android:layout_height="416dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"
         app:srcCompat="@drawable/title_eight" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_midpoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50904393" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
