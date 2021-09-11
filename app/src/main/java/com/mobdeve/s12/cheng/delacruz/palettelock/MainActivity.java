@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
     private int currentCount=0;
     public int level;
 
+    public int minutes;
+    public int seconds;
+
+    TextView minutesText;
+    TextView secondsText;
+
     ImageView reelLock1;
     ImageView reelLock2;
     ImageView reelLock3;
@@ -53,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     TextView score;
 
     Timer timer;
+    Timer timerCountdown;
 
     public int currentScore = 0;
 
@@ -86,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int length;
 
+    public int countdown;
+
     // For Chances
 
     public int baseChance;
@@ -116,9 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
         timer = new Timer();
         Metronome metronome = new Metronome();
+
+        timerCountdown = new Timer();
+        Countdown countdownTimer = new Countdown();
+
         // based on BPM
-
-
 
         play();
 
@@ -157,9 +169,15 @@ public class MainActivity extends AppCompatActivity {
             secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) blackSwan2 / 1000));
 
             length = desiredLength + secondsDeficit;
+
+            countdown = desiredLength;
+
             timer.schedule(metronome,
                     blackSwanDelay,
                     blackSwan2);
+
+            timerCountdown.schedule(countdownTimer, blackSwanDelay, 1000);
+
         }
 
         if(level == 2)
@@ -171,9 +189,14 @@ public class MainActivity extends AppCompatActivity {
 
             length = desiredLength + secondsDeficit;
 
+            countdown = desiredLength;
+
             timer.schedule(metronome,
                     superlativesDelay,
                     superlatives2);
+
+            timerCountdown.schedule(countdownTimer, superlativesDelay, 1000);
+
         }
         if(level == 3)
         {
@@ -182,11 +205,15 @@ public class MainActivity extends AppCompatActivity {
 
             secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) architect2 / 1000));
 
+            countdown = desiredLength;
+
             length = desiredLength + secondsDeficit;
 
             timer.schedule(metronome,
                     architectDelay,
                     architect2);
+
+            timerCountdown.schedule(countdownTimer, architectDelay, 1000);
         }
 
         if(level == 4)
@@ -198,9 +225,13 @@ public class MainActivity extends AppCompatActivity {
 
             length = desiredLength + secondsDeficit;
 
+            countdown = desiredLength;
+
             timer.schedule(metronome,
                     blackSwanDelay,
                     blackSwan3);
+
+            timerCountdown.schedule(countdownTimer, blackSwanDelay, 1000);
         }
 
 
@@ -213,9 +244,13 @@ public class MainActivity extends AppCompatActivity {
 
             length = desiredLength + secondsDeficit;
 
+            countdown = desiredLength;
+
             timer.schedule(metronome,
                     superlativesDelay,
                     superlatives3);
+
+            timerCountdown.schedule(countdownTimer, superlativesDelay, 1000);
         }
 
         if(level == 6)
@@ -227,9 +262,13 @@ public class MainActivity extends AppCompatActivity {
 
             length = desiredLength + secondsDeficit;
 
+            countdown = desiredLength;
+
             timer.schedule(metronome,
                     architectDelay,
                     architect3);
+
+            timerCountdown.schedule(countdownTimer, architectDelay, 1000);
         }
 
         counter = findViewById(R.id.counter);
@@ -245,6 +284,9 @@ public class MainActivity extends AppCompatActivity {
         reelLock3 = (ImageView)findViewById(R.id.lock3);
         reelLock4 = (ImageView)findViewById(R.id.lock4);
         reelLock5 = (ImageView)findViewById(R.id.lock5);
+
+        minutesText = findViewById(R.id.mins);
+        secondsText = findViewById(R.id.seconds);
 
         // Color Palletes (Color 1,2,3,4,5) --->
 
@@ -420,9 +462,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {}
 
-    }
     public void play(){
         if(player == null)
         {
@@ -663,6 +704,33 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private class Countdown extends TimerTask{
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    countdown--;
+
+                    minutes = countdown / 60;
+
+                    minutesText.setText(String.valueOf(minutes));
+
+                    seconds = countdown % 60;
+
+                    secondsText.setText(String.valueOf(seconds));
+
+                    if(countdown == 0)
+                    {
+                        timerCountdown.cancel();
+                    }
+                }
+            });
+
+        }
+    }
 
     private class Metronome extends TimerTask {
 
@@ -694,6 +762,7 @@ public class MainActivity extends AppCompatActivity {
                     }*/
 
                     timeCounter++;
+
 
                     if (timeCounter >= length) // change the 30 to the length of music
                     {
