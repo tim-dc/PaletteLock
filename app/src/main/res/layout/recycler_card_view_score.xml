@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="10dp"
+    android:id="@+id/select_card"
+    app:cardElevation="6dp"
+    app:strokeColor="#5C3D2E"
+    android:background="#FAF3E0"
+    app:strokeWidth="@dimen/cardview_default_radius"
+    >
+
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:background="#FAF3E0"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/score_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/indie_flower"
+            android:text="10"
+            android:textColor="#5C3D2E"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/score_level"
+            android:fontFamily="@font/indie_flower"
+            android:layout_centerHorizontal="true"
+            android:textColor="#5C3D2E"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Level 1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/score_level"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/indie_flower"
+            android:text="High Score"
+            android:textColor="#5C3D2E"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
