@@ -19,6 +19,8 @@ public class CanvasReel1 extends View {
     private Rect mRectSlot1;
     private Paint mPaintSlot1;
 
+    private Rect mBorder;
+    private Paint mBorderPaint;
     private boolean lockStatus = false;
 
     private Paint mPaintCircle1;
@@ -54,18 +56,21 @@ public class CanvasReel1 extends View {
 
     private void init(@Nullable AttributeSet set) {
         mRectSlot1 = new Rect();
+        mBorder = new Rect();
 
         mPaintSlot1 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mPaintSlot1.setColor(Color.rgb(123,150,72));
+        mBorderPaint.setColor(Color.rgb(0,0,0));
 
         mPaintCircle1 = new Paint();
         mPaintCircle1.setAntiAlias(true);
-        mPaintCircle1.setColor(Color.parseColor("#264653"));
-
-        mPaintCircle2 = new Paint();
-        mPaintCircle2.setAntiAlias(true);
-        mPaintCircle2.setColor(Color.parseColor("#faf8ef"));
+        mPaintCircle1.setColor(Color.parseColor("#0c0c0c"));
+//
+//        mPaintCircle2 = new Paint();
+//        mPaintCircle2.setAntiAlias(true);
+//        mPaintCircle2.setColor(Color.parseColor("#faf8ef"));
     }
 
     public void changeGoalColor (String hexColor)
@@ -134,17 +139,32 @@ public class CanvasReel1 extends View {
         int subtractWidth =  leftOffset*2;
         int subtractHeight = topOffset*2;
 
+        int borderOffset = 60;
+
+        // Border Rectangle
+        mBorder.left = 0;
+        mBorder.top = topOffset;
+        mBorder.right = width;
+        mBorder.bottom = height;
 
         // First Rectangle
-        mRectSlot1.left = 0;
-        mRectSlot1.top = topOffset;
-        mRectSlot1.right = width;
-        mRectSlot1.bottom = height;
+        mRectSlot1.left = 0 + borderOffset;
+        mRectSlot1.top = topOffset + borderOffset;
+        mRectSlot1.right = width + borderOffset;
+        mRectSlot1.bottom = height + borderOffset;
+
+
 
 //        canvas.drawRect(mRectSlot1, mPaintSlot1);
 
+        RectF rectG = new RectF (0,topOffset,width,height);
+
         RectF rectF = new RectF (0,topOffset,width,height);
-        canvas.drawRoundRect(rectF,35,35,mPaintSlot1);
+        canvas.drawRoundRect(rectG,35, 35, mBorderPaint);
+        canvas.drawRoundRect(rectF,35 ,35, mPaintSlot1);
+
+
+
         float cx, cy;
         float radius = 40f;
 
@@ -154,7 +174,7 @@ public class CanvasReel1 extends View {
 //        canvas.drawCircle(cx,cy,radius,mPaintCircle2);
 
         cx = getWidth() / 2;
-        cy = topOffset - mRectSlot1.top/2;
+        cy = topOffset - mBorder.top/2;
 
         canvas.drawCircle(cx,cy,radius,mPaintCircle1);
 

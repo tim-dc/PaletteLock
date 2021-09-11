@@ -109,8 +109,8 @@
 
     <ImageView
         android:id="@+id/lock1"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="114dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
         app:layout_constraintEnd_toEndOf="@+id/reel1"

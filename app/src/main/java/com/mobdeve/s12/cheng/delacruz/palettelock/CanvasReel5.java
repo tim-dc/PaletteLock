@@ -59,7 +59,7 @@ public class CanvasReel5 extends View {
 
         mPaintCircle1 = new Paint();
         mPaintCircle1.setAntiAlias(true);
-        mPaintCircle1.setColor(Color.parseColor("#e76f51"));
+        mPaintCircle1.setColor(Color.parseColor("#0c0c0c"));
 
 
     }
