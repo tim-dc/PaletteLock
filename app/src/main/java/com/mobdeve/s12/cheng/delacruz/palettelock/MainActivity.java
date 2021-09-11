@@ -132,18 +132,18 @@ public class MainActivity extends AppCompatActivity {
 
         blackSwanDelay = 3400;
 
-        // FOR HOLD ME DOWN
+        // Superlatives
         superlatives1 = 1860; // 32 bpm
-        superlatives2 = 930; // 63 bpm
+        superlatives2 = 666; // 63 bpm
         superlatives3 = 465; // 130 bpm
 
         superlativesDelay = 5000;
 
         // FOR ARCHITECT
         // temporary values
-        architect1 = 1800;
-        architect2 = 900;
-        architect3 = 460;
+        architect1 = 1500;
+        architect2 = 740; // 81 bpm
+        architect3 = 460; // 40 bpm   **BASE BPM
 
         architectDelay = 4000;
 
