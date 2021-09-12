@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
         palette_lock = MediaPlayer.create(this, R.raw.palettelock);
 
 
-        // Home Button
+        // Home button
         findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
