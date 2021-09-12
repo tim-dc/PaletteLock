@@ -92,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
     public int architect3;
     public int architectDelay;
 
+    public int frame_of_mind;
+    public int frameDelay;
+
+    public int take_a_chance;
+    public int chanceDelay;
+
+    public int take_me_there;
+    public int thereDelay;
+
     public int length;
 
     public int countdown;
@@ -159,6 +168,18 @@ public class MainActivity extends AppCompatActivity {
 
         architectDelay = 4000;
 
+
+        frame_of_mind = 681;
+        frameDelay = 12000;
+
+        take_me_there = 882;
+        thereDelay = 5000;
+
+        take_a_chance = 869;
+        chanceDelay = 2000;
+
+
+
         // period is key
         // higher level, higher bpm, lower period value
         if(level == 1)
@@ -189,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
             length = desiredLength + secondsDeficit;
 
-            countdown = desiredLength;
+            countdown = desiredLength - ((int) Math.ceil(superlativesDelay / 1000));
 
             timer.schedule(metronome,
                     superlativesDelay,
@@ -205,9 +226,9 @@ public class MainActivity extends AppCompatActivity {
 
             secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) architect2 / 1000));
 
-            countdown = desiredLength;
-
             length = desiredLength + secondsDeficit;
+
+            countdown = desiredLength - ((int) Math.ceil(architectDelay / 1000));
 
             timer.schedule(metronome,
                     architectDelay,
@@ -219,56 +240,56 @@ public class MainActivity extends AppCompatActivity {
         if(level == 4)
         {
             int secondsDeficit;
-            int desiredLength = 94; // in seconds
+            int desiredLength = 98; // in seconds
 
-            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) blackSwan3 / 1000));
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) take_a_chance / 1000));
 
             length = desiredLength + secondsDeficit;
 
-            countdown = desiredLength;
+            countdown = desiredLength - ((int) Math.ceil(chanceDelay / 1000));
 
             timer.schedule(metronome,
-                    blackSwanDelay,
-                    blackSwan3);
+                    chanceDelay,
+                    take_a_chance);
 
-            timerCountdown.schedule(countdownTimer, blackSwanDelay, 1000);
+            timerCountdown.schedule(countdownTimer, chanceDelay, 1000);
         }
 
 
         if(level == 5)
         {
             int secondsDeficit;
-            int desiredLength = 128; // in seconds
+            int desiredLength = 97; // in seconds
 
-            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) superlatives2 / 1000));
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) take_me_there / 1000));
 
             length = desiredLength + secondsDeficit;
 
-            countdown = desiredLength;
+            countdown = desiredLength - ((int) Math.ceil(thereDelay / 1000));
 
             timer.schedule(metronome,
-                    superlativesDelay,
-                    superlatives3);
+                    thereDelay,
+                    take_me_there);
 
-            timerCountdown.schedule(countdownTimer, superlativesDelay, 1000);
+            timerCountdown.schedule(countdownTimer, thereDelay, 1000);
         }
 
         if(level == 6)
         {
             int secondsDeficit;
-            int desiredLength = 99; // in seconds
+            int desiredLength = 123; // in seconds
 
-            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) architect3 / 1000));
+            secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) frame_of_mind / 1000));
 
             length = desiredLength + secondsDeficit;
 
-            countdown = desiredLength;
+            countdown = desiredLength - ((int) Math.ceil(frameDelay / 1000));
 
             timer.schedule(metronome,
-                    architectDelay,
-                    architect3);
+                    frameDelay,
+                    frame_of_mind);
 
-            timerCountdown.schedule(countdownTimer, architectDelay, 1000);
+            timerCountdown.schedule(countdownTimer, frameDelay, 1000);
         }
 
         counter = findViewById(R.id.counter);
@@ -467,19 +488,34 @@ public class MainActivity extends AppCompatActivity {
     public void play(){
         if(player == null)
         {
-            if(level == 1 || level == 4)
+            if(level == 1)
             {
                 player = MediaPlayer.create(this, R.raw.black_swan);
             }
 
-            if(level == 2 || level == 5)
+            if(level == 2)
             {
                 player = MediaPlayer.create(this, R.raw.superlatives);
             }
 
-            if(level == 3 || level == 6)
+            if(level == 3)
             {
                 player = MediaPlayer.create(this, R.raw.architect);
+            }
+
+            if(level == 4)
+            {
+                player = MediaPlayer.create(this, R.raw.take_a_chance);
+            }
+
+            if(level == 5)
+            {
+                player = MediaPlayer.create(this, R.raw.take_me_there);
+            }
+
+            if(level == 6)
+            {
+                player = MediaPlayer.create(this, R.raw.frame_of_mind);
             }
 
 
