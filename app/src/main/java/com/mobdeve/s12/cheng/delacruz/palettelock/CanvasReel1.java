@@ -155,6 +155,7 @@ public class CanvasReel1 extends View {
 
 
 
+
 //        canvas.drawRect(mRectSlot1, mPaintSlot1);
 
 //        RectF rectG = new RectF (0,topOffset,width+2,height+2);
