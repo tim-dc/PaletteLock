@@ -153,27 +153,26 @@ public class MainActivity extends AppCompatActivity {
 
         blackSwanDelay = 3400;
 
-        // FOR HOLD ME DOWN
+        // FOR SUPERLATIVES
         superlatives1 = 1860; // 32 bpm
-        superlatives2 = 930; // 63 bpm
+        superlatives2 = 674; // 63 bpm
         superlatives3 = 465; // 130 bpm
 
-        superlativesDelay = 5000;
+        superlativesDelay = 1900;
 
         // FOR ARCHITECT
         // temporary values
         architect1 = 1800;
-        architect2 = 900;
+        architect2 = 750;
         architect3 = 460;
 
         architectDelay = 4000;
 
-
         frame_of_mind = 681;
-        frameDelay = 12000;
+        frameDelay = 4800;
 
-        take_me_there = 882;
-        thereDelay = 5000;
+        take_me_there = 869;
+        thereDelay = 3700;
 
         take_a_chance = 869;
         chanceDelay = 2000;
