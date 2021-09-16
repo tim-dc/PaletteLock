@@ -657,6 +657,9 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
         //dialog.setCancelable(false);
 
+        dialog.show();
+
+
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -667,16 +670,17 @@ public class MainActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
                 Intent mIntent;
                 mIntent = new Intent(MainActivity.this, SelectLevel.class);
                 startActivity(mIntent);
                 stopPlayer();
                 timer.cancel();
+                timerCountdown.cancel();
                 finish();
             }
         });
 
-        dialog.show();
 
     }
 
@@ -727,6 +731,8 @@ public class MainActivity extends AppCompatActivity {
 
         score.setText(String.valueOf(currentScore));
 
+        dialog.show();
+
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -736,7 +742,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        dialog.show();
     }
 
     private class Countdown extends TimerTask{
@@ -760,9 +765,8 @@ public class MainActivity extends AppCompatActivity {
                     if(countdown == 0)
                     {
                         timerCountdown.cancel();
-                        showGameOver();
                         stopPlayer();
-                        timer.cancel();
+                        showGameOver();
                     }
                 }
             });
@@ -807,8 +811,11 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("END TIMER!");
                         scoreModel.setScore(currentScore);
                         scoreModel.setLevel(level);
-                        System.out.println(level);
+                        //System.out.println(level);
                         addData(currentScore, level);
+                        //timerCountdown.cancel();
+                        timer.cancel();
+                        //stopPlayer();
 
                     }
 
