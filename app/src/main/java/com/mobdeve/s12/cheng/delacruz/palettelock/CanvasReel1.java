@@ -139,28 +139,28 @@ public class CanvasReel1 extends View {
         int subtractWidth =  leftOffset*2;
         int subtractHeight = topOffset*2;
 
-        int borderOffset = 60;
+        int borderOffset = 120;
 
         // Border Rectangle
         mBorder.left = 0;
         mBorder.top = topOffset;
-        mBorder.right = width;
-        mBorder.bottom = height;
+        mBorder.right = width ;
+        mBorder.bottom = height ;
 
         // First Rectangle
-        mRectSlot1.left = 0 + borderOffset;
-        mRectSlot1.top = topOffset + borderOffset;
-        mRectSlot1.right = width + borderOffset;
-        mRectSlot1.bottom = height + borderOffset;
+        mRectSlot1.left = 0 - borderOffset;
+        mRectSlot1.top = topOffset - borderOffset;
+        mRectSlot1.right = width - borderOffset;
+        mRectSlot1.bottom = height - borderOffset;
 
 
 
 //        canvas.drawRect(mRectSlot1, mPaintSlot1);
 
-        RectF rectG = new RectF (0,topOffset,width,height);
+//        RectF rectG = new RectF (0,topOffset,width+2,height+2);
 
         RectF rectF = new RectF (0,topOffset,width,height);
-        canvas.drawRoundRect(rectG,35, 35, mBorderPaint);
+//        canvas.drawRoundRect(rectG,35, 35, mBorderPaint);
         canvas.drawRoundRect(rectF,35 ,35, mPaintSlot1);
 
 
