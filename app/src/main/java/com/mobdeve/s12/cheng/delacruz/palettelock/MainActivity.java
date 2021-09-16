@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         if(level == 2)
         {
             int secondsDeficit;
-            int desiredLength = 128; // in seconds
+            int desiredLength = 140; // in seconds
 
             secondsDeficit = (int) Math.ceil(desiredLength * (1 - (float) superlatives2 / 1000));
 
@@ -760,6 +760,9 @@ public class MainActivity extends AppCompatActivity {
                     if(countdown == 0)
                     {
                         timerCountdown.cancel();
+                        showGameOver();
+                        stopPlayer();
+                        timer.cancel();
                     }
                 }
             });
@@ -806,9 +809,7 @@ public class MainActivity extends AppCompatActivity {
                         scoreModel.setLevel(level);
                         System.out.println(level);
                         addData(currentScore, level);
-                        showGameOver();
-                        stopPlayer();
-                        timer.cancel();
+
                     }
 
 
